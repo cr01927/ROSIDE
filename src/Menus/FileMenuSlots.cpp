@@ -11,9 +11,11 @@
 
 void FileMenuSlots::NewFile(MainWindow* mainWindow) {
     mainWindow->getDevelopWidget()->openNewTab();
+    mainWindow->setMode(MODE::DEVELOP);
 }
 
 void FileMenuSlots::OpenFile(MainWindow* mainWindow) {
     QString fileName = QFileDialog::getOpenFileName(mainWindow, "Open file");
     mainWindow->getDevelopWidget()->openFileInTab(fileName);
+    mainWindow->setMode(MODE::DEVELOP);
 }

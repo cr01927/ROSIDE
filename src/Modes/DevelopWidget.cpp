@@ -25,6 +25,7 @@ DevelopWidget::DevelopWidget(QWidget *parent)
 void DevelopWidget::openNewTab() {
     EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
     main_tab_widget_->addTab(fileEditor, tr("New"));
+    main_tab_widget_->setCurrentWidget(fileEditor);
 }
 
 void DevelopWidget::openFileInTab(QString fileName) {
@@ -40,4 +41,6 @@ void DevelopWidget::openFileInTab(QString fileName) {
     EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
     main_tab_widget_->addTab(fileEditor, fileName);
     fileEditor->setPlainText(fileText);
+
+    main_tab_widget_->setCurrentWidget(fileEditor);
 }
