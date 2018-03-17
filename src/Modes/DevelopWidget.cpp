@@ -41,6 +41,7 @@ void DevelopWidget::openFileInTab(QString fileName) {
     EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
     main_tab_widget_->addTab(fileEditor, fileName);
     fileEditor->setPlainText(fileText);
+    fileEditor->setFileName(fileName);
 
     main_tab_widget_->setCurrentWidget(fileEditor);
 }
