@@ -21,6 +21,10 @@ void MainWindow::setMode(MODE mode) {
     main_tabbed_window_->setCurrentIndex(mode_tab_index_list_.value(mode));
 }
 
+DevelopWidget *MainWindow::getDevelopWidget() const {
+    return dynamic_cast<DevelopWidget*>(main_tabbed_window_->widget(mode_tab_index_list_.value(MODE::DEVELOP)));
+}
+
 
 
 MainWindow::MainWindow()

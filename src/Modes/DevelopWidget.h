@@ -12,6 +12,8 @@ class DevelopWidget : public QMainWindow {
     Q_OBJECT
 public:
     DevelopWidget(QWidget *parent = 0);
+
+    void openFileInTab(QString fileName);
 private:
     QTabWidget *main_tab_widget_;
 };
