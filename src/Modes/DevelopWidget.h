@@ -15,6 +15,8 @@ public:
 
     void openNewTab();
     void openFileInTab(QString fileName);
+    void saveCurrentTab();
+    void saveCurrentTabAs();
 private:
     QTabWidget *main_tab_widget_;
 };

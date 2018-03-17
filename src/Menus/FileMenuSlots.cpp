@@ -21,8 +21,8 @@ void FileMenuSlots::OpenFile(MainWindow* mainWindow) {
 }
 
 void FileMenuSlots::SaveFile(MainWindow* mainWindow) {
-
+    mainWindow->getDevelopWidget()->saveCurrentTab();
 }
 void FileMenuSlots::SaveFileAs(MainWindow* mainWindow) {
-
+    mainWindow->getDevelopWidget()->saveCurrentTabAs();
 }

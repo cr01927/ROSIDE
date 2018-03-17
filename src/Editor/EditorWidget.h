@@ -16,7 +16,7 @@ public:
     ~EditorWidget();
 
     QString getFileName() const;
-    void setFileName(QString& fileName) const;
+    void setFileName(QString fileName);
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();

@@ -47,7 +47,8 @@ signals:
 public slots:
     void SlotNewFile();
     void SlotOpenFile();
-
+    void SlotSaveFile();
+    void SlotSaveFileAs();
 
 
 };

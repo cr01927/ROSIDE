@@ -45,3 +45,26 @@ void DevelopWidget::openFileInTab(QString fileName) {
 
     main_tab_widget_->setCurrentWidget(fileEditor);
 }
+
+void DevelopWidget::saveCurrentTab() {
+    // This line assumes all tabs are EditorWidgets. May not be the case in the future
+    EditorWidget* editorWidget = dynamic_cast<EditorWidget*>(main_tab_widget_->currentWidget());
+    QString fileName = editorWidget->getFileName();
+
+    if (fileName.isEmpty())
+        saveCurrentTabAs();
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly))
+        return;
+    QTextStream textStream(&file);
+    textStream << editorWidget->toPlainText();
+
+    file.close();
+}
+void DevelopWidget::saveCurrentTabAs() {
+    QString fileName = QFileDialog::getSaveFileName(this);
+    // This line assumes all tabs are EditorWidgets. May not be the case in the future
+    EditorWidget* editorWidget = dynamic_cast<EditorWidget*>(main_tab_widget_->currentWidget());
+    editorWidget->setFileName(fileName);
+    saveCurrentTab();
+}

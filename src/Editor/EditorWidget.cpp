@@ -32,7 +32,7 @@ QString EditorWidget::getFileName() const {
     return file_name_;
 }
 
-void EditorWidget::setFileName(QString& fileName) const {
+void EditorWidget::setFileName(QString fileName) {
     file_name_ = fileName;
 }
 
