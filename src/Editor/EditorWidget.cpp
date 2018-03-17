@@ -4,12 +4,7 @@
 
 #include <EditorWidget.h>
 
-#include <QColor>
-#include <QList>
-#include <QPainter>
-#include <QTextBlock>
-#include <QTextEdit>
-#include <QTextFormat>
+#include <QtWidgets>
 
 #include <LineNumberArea.h>
 

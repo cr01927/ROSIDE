@@ -5,10 +5,7 @@
 #ifndef ROSIDE_LINENUMBERAREA_H
 #define ROSIDE_LINENUMBERAREA_H
 
-#include <QPaintEvent>
-#include <QPlainTextEdit>
-#include <QSize>
-#include <QWidget>
+#include <QtWidgets>
 
 #include <EditorWidget.h>
 

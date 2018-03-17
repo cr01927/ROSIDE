@@ -5,7 +5,7 @@
 #ifndef ROSIDE_FILEMENUSLOTS_H
 #define ROSIDE_FILEMENUSLOTS_H
 
-#include <QObject>
+#include <QtWidgets>
 
 class MainWindow;
 

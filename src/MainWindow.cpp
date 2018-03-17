@@ -2,7 +2,7 @@
 // Created by cjreid on 3/11/18.
 //
 
-#include <QAction>
+#include <QtWidgets>
 
 #include <MainWindow.h>
 #include <Editor/EditorWidget.h>

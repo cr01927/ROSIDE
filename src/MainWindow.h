@@ -5,10 +5,7 @@
 #ifndef ROSIDE_MAINWINDOW_H
 #define ROSIDE_MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QMenu>
-#include <QTabWidget>
+#include <QtWidgets>
 
 #include <Menus/FileMenuSlots.h>
 

@@ -4,9 +4,7 @@
 
 #include "DevelopWidget.h"
 
-#include <QDockWidget>
-#include <QTabWidget>
-#include <QTreeView>
+#include <QtWidgets>
 
 #include <Editor/EditorWidget.h>
 

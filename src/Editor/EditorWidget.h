@@ -5,12 +5,7 @@
 #ifndef ROSIDE_EDITORWIDGET_H
 #define ROSIDE_EDITORWIDGET_H
 
-#include <QHBoxLayout>
-#include <QScrollBar>
-#include <QPaintEvent>
-#include <QPlainTextEdit>
-#include <QRect>
-#include <QWidget>
+#include <QtWidgets>
 
 class LineNumberArea;
 

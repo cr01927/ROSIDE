@@ -4,7 +4,7 @@
 
 #include <FileMenuSlots.h>
 
-#include <QMessageBox>
+#include <QtWidgets>
 
 
 void FileMenuSlots::NewFile(MainWindow* mainWindow) {

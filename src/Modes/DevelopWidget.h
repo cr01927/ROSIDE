@@ -5,10 +5,7 @@
 #ifndef ROSIDE_DEVELOPWIDGET_H
 #define ROSIDE_DEVELOPWIDGET_H
 
-#include <QMainWindow>
-
-class QTabWidget;
-class QWidget;
+#include <QtWidgets>
 
 
 class DevelopWidget : public QMainWindow {
