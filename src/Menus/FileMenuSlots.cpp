@@ -19,3 +19,10 @@ void FileMenuSlots::OpenFile(MainWindow* mainWindow) {
     mainWindow->getDevelopWidget()->openFileInTab(fileName);
     mainWindow->setMode(MODE::DEVELOP);
 }
+
+void FileMenuSlots::SaveFile(MainWindow* mainWindow) {
+
+}
+void FileMenuSlots::SaveFileAs(MainWindow* mainWindow) {
+    
+}
