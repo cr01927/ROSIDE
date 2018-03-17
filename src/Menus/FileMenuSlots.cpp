@@ -24,5 +24,5 @@ void FileMenuSlots::SaveFile(MainWindow* mainWindow) {
 
 }
 void FileMenuSlots::SaveFileAs(MainWindow* mainWindow) {
-    
+
 }

@@ -15,6 +15,9 @@ public:
     EditorWidget(QWidget *parent = 0);
     ~EditorWidget();
 
+    QString getFileName() const;
+    void setFileName(QString& fileName) const;
+
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();
 
@@ -29,6 +32,7 @@ private slots:
 
 private:
     QWidget *line_number_area_;
+    QString file_name_;
 
 
 
