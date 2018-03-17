@@ -11,6 +11,7 @@
 #include <QTabWidget>
 
 #include <Menus/FileMenuSlots.h>
+#include <Modes/DevelopWidget.h>
 
 enum MODE {
     DESIGN,
@@ -28,6 +29,8 @@ public:
 
     MODE getCurrentMode();
     void setMode(MODE mode);
+
+    DevelopWidget* getDevelopWidget() const;
 
 
 private:

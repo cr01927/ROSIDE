@@ -4,7 +4,9 @@
 
 #include <FileMenuSlots.h>
 
-#include <QMessageBox>
+#include <QtWidgets>
+
+#include <MainWindow.h>
 
 
 void FileMenuSlots::NewFile(MainWindow* mainWindow) {
@@ -13,5 +15,6 @@ void FileMenuSlots::NewFile(MainWindow* mainWindow) {
 }
 
 void FileMenuSlots::OpenFile(MainWindow* mainWindow) {
-
+    QString fileName = QFileDialog::getOpenFileName(mainWindow, "Open file");
+    mainWindow->getDevelopWidget()->openFileInTab(fileName);
 }
