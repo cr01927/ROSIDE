@@ -12,6 +12,11 @@
 
 #include <Menus/FileMenuSlots.h>
 
+enum MODE {
+    DESIGN,
+    DEVELOP
+};
+
 class MainWindow : public QMainWindow {
 
 Q_OBJECT
@@ -20,6 +25,8 @@ public:
 
     MainWindow(MainWindow const&) = delete;
     void operator=(MainWindow const&) = delete;
+
+    MODE getCurrentMode();
 
 
 private:
@@ -30,6 +37,7 @@ private:
 
 
     MainWindow *main_window_;
+    QMap<MODE, int> mode_tab_index_list_;
     QMenuBar menu_bar_;
     QMenu *file_menu_;
     QTabWidget *main_tabbed_window_;
