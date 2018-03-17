@@ -27,6 +27,7 @@ public:
     void operator=(MainWindow const&) = delete;
 
     MODE getCurrentMode();
+    void setMode(MODE mode);
 
 
 private:

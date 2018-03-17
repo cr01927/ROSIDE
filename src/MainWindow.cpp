@@ -16,6 +16,10 @@ MODE MainWindow::getCurrentMode() {
     return mode_tab_index_list_.key(main_tabbed_window_->currentIndex());
 }
 
+void MainWindow::setMode(MODE mode) {
+    main_tabbed_window_->setCurrentIndex(mode_tab_index_list_.value(mode));
+}
+
 
 
 MainWindow::MainWindow()
