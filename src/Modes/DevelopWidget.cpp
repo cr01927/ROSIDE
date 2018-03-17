@@ -21,6 +21,12 @@ DevelopWidget::DevelopWidget(QWidget *parent)
     main_tab_widget_->setTabsClosable(true);
 
 }
+
+void DevelopWidget::openNewTab() {
+    EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
+    main_tab_widget_->addTab(fileEditor, tr("New"));
+}
+
 void DevelopWidget::openFileInTab(QString fileName) {
     if (fileName.isEmpty())
         return;
