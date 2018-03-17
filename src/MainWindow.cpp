@@ -12,6 +12,10 @@ MainWindow& MainWindow::get() {
     return instance;
 }
 
+MODE MainWindow::getCurrentMode() {
+    return mode_tab_index_list_.key(main_tabbed_window_->currentIndex());
+}
+
 
 
 MainWindow::MainWindow()
@@ -22,8 +26,10 @@ MainWindow::MainWindow()
     show();
 
     main_tabbed_window_ = new QTabWidget(this);
-    main_tabbed_window_->addTab(new QWidget(), tr("Design"));
-    main_tabbed_window_->addTab(new EditorWidget(this), tr("Develop"));
+    // Create tabs and store indexes in mode_tab_index_list_
+    mode_tab_index_list_.insert(DESIGN, main_tabbed_window_->addTab(new QWidget(), tr("Design")));
+    mode_tab_index_list_.insert(DEVELOP, main_tabbed_window_->addTab(new EditorWidget(this), tr("Develop")));
+
     main_tabbed_window_->setTabPosition(QTabWidget::West);
     main_tabbed_window_->show();
     setCentralWidget(main_tabbed_window_);
