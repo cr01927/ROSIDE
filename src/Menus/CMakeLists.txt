@@ -12,6 +12,7 @@ find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 include_directories(
         ${QT_INCLUDES}
         .
+        ..
 )
 
 
