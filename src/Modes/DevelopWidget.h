@@ -13,6 +13,7 @@ class DevelopWidget : public QMainWindow {
 public:
     DevelopWidget(QWidget *parent = 0);
 
+    void openNewTab();
     void openFileInTab(QString fileName);
 private:
     QTabWidget *main_tab_widget_;

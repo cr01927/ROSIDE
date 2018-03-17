@@ -10,8 +10,7 @@
 
 
 void FileMenuSlots::NewFile(MainWindow* mainWindow) {
-    QMessageBox box(QMessageBox::Information, "New File", "Make a new file");
-    box.exec();
+    mainWindow->getDevelopWidget()->openNewTab();
 }
 
 void FileMenuSlots::OpenFile(MainWindow* mainWindow) {
