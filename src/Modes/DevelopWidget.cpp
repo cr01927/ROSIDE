@@ -30,7 +30,7 @@ DevelopWidget::DevelopWidget(QWidget *parent)
 }
 
 void DevelopWidget::openNewTab() {
-    EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
+    auto *fileEditor = new EditorWidget(main_tab_widget_);
     main_tab_widget_->addTab(fileEditor, tr("New"));
     main_tab_widget_->setCurrentWidget(fileEditor);
 }
@@ -45,7 +45,7 @@ void DevelopWidget::openFileInTab(QString fileName) {
     QTextCodec *textCodec = QTextCodec::codecForUtfText(byteData);
     QString fileText = textCodec->toUnicode(byteData);
 
-    EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
+    auto *fileEditor = new EditorWidget(main_tab_widget_);
     main_tab_widget_->addTab(fileEditor, fileName);
     fileEditor->setPlainText(fileText);
     fileEditor->setFileName(fileName);
@@ -56,6 +56,7 @@ void DevelopWidget::openFileInTab(QString fileName) {
 void DevelopWidget::closeTab(int index) {
     // Assumes main_tab_widget_ contains only EditorWidgets
     main_tab_widget_->removeTab(index);
+}
 
 void DevelopWidget::saveCurrentTab() {
     // This line assumes all tabs are EditorWidgets. May not be the case in the future
