@@ -51,8 +51,10 @@ void DevelopWidget::saveCurrentTab() {
     EditorWidget* editorWidget = dynamic_cast<EditorWidget*>(main_tab_widget_->currentWidget());
     QString fileName = editorWidget->getFileName();
 
-    if (fileName.isEmpty())
+    if (fileName.isEmpty()) {
         saveCurrentTabAs();
+        return;
+    }
     QTextDocumentWriter writer(fileName);
     writer.setFormat("plaintext");
     writer.write(editorWidget->document());
