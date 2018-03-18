@@ -5,7 +5,7 @@ set(CMAKE_AUTORCC ON)
 set( MENUS_SRC_FILES
         FileMenuSlots.h
         FileMenuSlots.cpp
-        )
+        EditMenuSlots.cpp EditMenuSlots.h)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 

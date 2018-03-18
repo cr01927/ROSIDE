@@ -80,3 +80,7 @@ void DevelopWidget::saveCurrentTabAs() {
     editorWidget->setFileName(fileName);
     saveCurrentTab();
 }
+
+EditorWidget* DevelopWidget::getActiveTab() {
+    return dynamic_cast<EditorWidget*>(main_tab_widget_->currentWidget());
+}
