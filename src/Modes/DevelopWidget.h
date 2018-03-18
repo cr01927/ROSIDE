@@ -15,6 +15,9 @@ public:
 
     void openNewTab();
     void openFileInTab(QString fileName);
+
+private slots:
+    void closeTab(int index);
     void saveCurrentTab();
     void saveCurrentTabAs();
 private:
