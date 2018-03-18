@@ -46,9 +46,9 @@ void DevelopWidget::openFileInTab(QString fileName) {
     QString fileText = textCodec->toUnicode(byteData);
 
     auto *fileEditor = new EditorWidget(main_tab_widget_);
-    main_tab_widget_->addTab(fileEditor, fileName);
     fileEditor->setPlainText(fileText);
     fileEditor->setFileName(fileName);
+    main_tab_widget_->addTab(fileEditor, fileEditor->getFileName());
 
     main_tab_widget_->setCurrentWidget(fileEditor);
 }
