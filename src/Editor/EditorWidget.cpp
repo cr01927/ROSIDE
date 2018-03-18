@@ -10,7 +10,7 @@
 
 
 EditorWidget::EditorWidget(QWidget *parent) :
-    QPlainTextEdit(parent) {
+    QPlainTextEdit(parent), file_info_(nullptr) {
 
     line_number_area_ = new LineNumberArea(this);
 
@@ -29,11 +29,21 @@ EditorWidget::~EditorWidget() {
 }
 
 QString EditorWidget::getFileName() const {
-    return file_name_;
+    if (file_info_ == nullptr)
+        return QString::null;
+    return file_info_->fileName();
+}
+
+QString EditorWidget::getFullFileName() const {
+    if (file_info_ == nullptr)
+        return QString::null;
+    return file_info_->absoluteFilePath();
 }
 
 void EditorWidget::setFileName(QString fileName) {
-    file_name_ = fileName;
+    if (file_info_ == nullptr)
+        file_info_ = new QFileInfo();
+    file_info_->setFile(fileName);
 }
 
 void EditorWidget::lineNumberAreaPaintEvent(QPaintEvent *event) {

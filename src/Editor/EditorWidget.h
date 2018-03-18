@@ -16,6 +16,7 @@ public:
     ~EditorWidget();
 
     QString getFileName() const;
+    QString getFullFileName() const;
     void setFileName(QString fileName);
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
@@ -32,7 +33,7 @@ private slots:
 
 private:
     QWidget *line_number_area_;
-    QString file_name_;
+    QFileInfo *file_info_;
 
 
 
