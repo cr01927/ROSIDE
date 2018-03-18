@@ -7,6 +7,7 @@
 #include <QtWidgets>
 
 #include <Editor/EditorWidget.h>
+#include <ROSPackageExplorer/ROSPackageExplorer.h>
 
 DevelopWidget::DevelopWidget(QWidget *parent)
     : QMainWindow(parent) {
@@ -19,6 +20,10 @@ DevelopWidget::DevelopWidget(QWidget *parent)
     main_tab_widget_->addTab(new EditorWidget(main_tab_widget_), "Test");
     main_tab_widget_->setMovable(true);
     main_tab_widget_->setTabsClosable(true);
+
+    ROS_package_explorer_dock = new QDockWidget(tr("ROS Package Explorer"), this);
+    ROS_package_explorer_dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    ROS_package_explorer_dock->setWidget(new ROSPackageExplorer(this));
 
 }
 

@@ -1,6 +1,7 @@
 add_subdirectory(Editor)
 add_subdirectory(Menus)
 add_subdirectory(Modes)
+add_subdirectory(ROSPackageExplorer)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
