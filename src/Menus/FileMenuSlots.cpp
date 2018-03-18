@@ -8,21 +8,24 @@
 
 #include <MainWindow.h>
 
-
-void FileMenuSlots::NewFile(MainWindow* mainWindow) {
-    mainWindow->getDevelopWidget()->openNewTab();
-    mainWindow->setMode(MODE::DEVELOP);
+FileMenuSlots::FileMenuSlots(MainWindow* mainWindow) {
+    main_window_ = mainWindow;
 }
 
-void FileMenuSlots::OpenFile(MainWindow* mainWindow) {
-    QString fileName = QFileDialog::getOpenFileName(mainWindow, "Open file");
-    mainWindow->getDevelopWidget()->openFileInTab(fileName);
-    mainWindow->setMode(MODE::DEVELOP);
+void FileMenuSlots::NewFile() {
+    main_window_->getDevelopWidget()->openNewTab();
+    main_window_->setMode(MODE::DEVELOP);
 }
 
-void FileMenuSlots::SaveFile(MainWindow* mainWindow) {
-    mainWindow->getDevelopWidget()->saveCurrentTab();
+void FileMenuSlots::OpenFile() {
+    QString fileName = QFileDialog::getOpenFileName(main_window_, "Open file");
+    main_window_->getDevelopWidget()->openFileInTab(fileName);
+    main_window_->setMode(MODE::DEVELOP);
 }
-void FileMenuSlots::SaveFileAs(MainWindow* mainWindow) {
-    mainWindow->getDevelopWidget()->saveCurrentTabAs();
+
+void FileMenuSlots::SaveFile() {
+    main_window_->getDevelopWidget()->saveCurrentTab();
+}
+void FileMenuSlots::SaveFileAs() {
+    main_window_->getDevelopWidget()->saveCurrentTabAs();
 }

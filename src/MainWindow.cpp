@@ -30,6 +30,8 @@ DevelopWidget *MainWindow::getDevelopWidget() const {
 MainWindow::MainWindow()
 : QMainWindow(0) {
     resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
+
+    file_menu_slots_ = new FileMenuSlots(this);
     InitMenuBar();
     show();
 
@@ -61,25 +63,9 @@ void MainWindow::InitFileMenu() {
     file_menu_ = menuBar()->addMenu(tr("&File"));
 
     // Create actions
-    file_menu_->addAction(tr("&New..."), this, SLOT(SlotNewFile()));
-    file_menu_->addAction(tr("&Open..."), this, SLOT(SlotOpenFile()));
-    file_menu_->addAction(tr("&Save..."), this, SLOT(SlotSaveFile()));
-    file_menu_->addAction(tr("Save &As..."), this, SLOT(SlotSaveFileAs()));
+    file_menu_->addAction(tr("&New..."), file_menu_slots_, SLOT(NewFile()));
+    file_menu_->addAction(tr("&Open..."), file_menu_slots_, SLOT(OpenFile()));
+    file_menu_->addAction(tr("&Save..."), file_menu_slots_, SLOT(SaveFile()));
+    file_menu_->addAction(tr("Save &As..."), file_menu_slots_, SLOT(SaveFileAs()));
 
-}
-
-void MainWindow::SlotNewFile() {
-    FileMenuSlots::NewFile(this);
-}
-
-void MainWindow::SlotOpenFile() {
-    FileMenuSlots::OpenFile(this);
-}
-
-void MainWindow::SlotSaveFile() {
-    FileMenuSlots::SaveFile(this);
-}
-
-void MainWindow::SlotSaveFileAs() {
-    FileMenuSlots::SaveFileAs(this);
 }

@@ -9,11 +9,18 @@
 
 class MainWindow;
 
-namespace FileMenuSlots {
+class FileMenuSlots : public QObject{
+    Q_OBJECT
+public:
+    FileMenuSlots(MainWindow*);
 
-    void NewFile(MainWindow* mainWindow);
-    void OpenFile(MainWindow* mainWindow);
-    void SaveFile(MainWindow* mainWindow);
-    void SaveFileAs(MainWindow* mainWindow);
-}
+public slots:
+    void NewFile();
+    void OpenFile();
+    void SaveFile();
+    void SaveFileAs();
+
+private:
+    MainWindow* main_window_;
+};
 #endif //ROSIDE_FILEMENUSLOTS_H

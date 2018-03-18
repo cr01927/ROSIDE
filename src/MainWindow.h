@@ -37,18 +37,12 @@ private:
     void InitFileMenu();
 
 
+    FileMenuSlots* file_menu_slots_;
     MainWindow *main_window_;
     QMap<MODE, int> mode_tab_index_list_;
     QMenuBar menu_bar_;
     QMenu *file_menu_;
     QTabWidget *main_tabbed_window_;
-
-signals:
-public slots:
-    void SlotNewFile();
-    void SlotOpenFile();
-    void SlotSaveFile();
-    void SlotSaveFileAs();
 
 
 };
