@@ -30,7 +30,6 @@ private slots:
     void highlightCurrentLine();
     void updateLineNumberArea(const QRect&, int);
 
-
 private:
     QWidget *line_number_area_;
     QFileInfo *file_info_;

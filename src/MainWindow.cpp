@@ -32,6 +32,7 @@ MainWindow::MainWindow()
     resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
 
     file_menu_slots_ = new FileMenuSlots(this);
+    edit_menu_slots_ = new EditMenuSlots(this);
     InitMenuBar();
     show();
 
@@ -51,6 +52,7 @@ void MainWindow::InitMenuBar() {
     setMenuBar(&menu_bar_);
 
     InitFileMenu();
+    InitEditMenu();
     menuBar()->show();
 
 
@@ -67,5 +69,21 @@ void MainWindow::InitFileMenu() {
     file_menu_->addAction(tr("&Open..."), file_menu_slots_, SLOT(OpenFile()));
     file_menu_->addAction(tr("&Save..."), file_menu_slots_, SLOT(SaveFile()));
     file_menu_->addAction(tr("Save &As..."), file_menu_slots_, SLOT(SaveFileAs()));
+
+}
+
+void MainWindow::InitEditMenu() {
+    // Add edit dropdown to main menu bar
+    edit_menu_ = menuBar()->addMenu(tr("&Edit"));
+
+    // Create actions
+    edit_menu_->addAction(tr("&Undo"), edit_menu_slots_, SLOT(Undo()));
+    edit_menu_->addAction(tr("&Redo"), edit_menu_slots_, SLOT(Redo()));
+
+    edit_menu_->addSeparator();
+
+    edit_menu_->addAction(tr("Cu&t"), edit_menu_slots_, SLOT(Cut()));
+    edit_menu_->addAction(tr("&Copy"), edit_menu_slots_, SLOT(Copy()));
+    edit_menu_->addAction(tr("&Paste"), edit_menu_slots_, SLOT(Paste()));
 
 }

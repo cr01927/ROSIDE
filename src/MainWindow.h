@@ -8,6 +8,7 @@
 #include <QtWidgets>
 
 #include <Menus/FileMenuSlots.h>
+#include <Menus/EditMenuSlots.h>
 #include <Modes/DevelopWidget.h>
 
 enum MODE {
@@ -35,13 +36,15 @@ private:
 
     void InitMenuBar();
     void InitFileMenu();
+    void InitEditMenu();
 
 
     FileMenuSlots* file_menu_slots_;
+    EditMenuSlots* edit_menu_slots_;
     MainWindow *main_window_;
     QMap<MODE, int> mode_tab_index_list_;
     QMenuBar menu_bar_;
-    QMenu *file_menu_;
+    QMenu *file_menu_, *edit_menu_;
     QTabWidget *main_tabbed_window_;
 
 

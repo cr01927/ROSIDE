@@ -6,6 +6,7 @@
 #define ROSIDE_DEVELOPWIDGET_H
 
 #include <QtWidgets>
+#include <Editor/EditorWidget.h>
 
 
 class DevelopWidget : public QMainWindow {
@@ -18,6 +19,8 @@ public:
 
     void saveCurrentTab();
     void saveCurrentTabAs();
+
+    EditorWidget* getActiveTab();
 
 private slots:
     void closeTab(int index);
