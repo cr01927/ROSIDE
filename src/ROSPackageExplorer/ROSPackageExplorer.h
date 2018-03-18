@@ -7,9 +7,10 @@
 
 #include <QtWidgets>
 
-class ROSPackageExplorer : public QTreeView {
+// Not sure if this should inherit QMainWindow or just QWidget... depends on the toolbars I think?
+class ROSPackageExplorer : public QMainWindow {
 public:
-    ROSPackageExplorer(QWidget *parent = 0);
+    ROSPackageExplorer(QWidget *parent = nullptr);
 private:
 
 };

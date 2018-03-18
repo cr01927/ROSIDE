@@ -5,6 +5,7 @@
 #include "ROSPackageExplorer.h"
 
 ROSPackageExplorer::ROSPackageExplorer(QWidget *parent)
-    : QTreeView(parent) {
+    : QMainWindow(parent) {
 
+    setCentralWidget(new QTreeView(this));
 }
