@@ -28,6 +28,14 @@ EditorWidget::~EditorWidget() {
 
 }
 
+QString EditorWidget::getFileName() const {
+    return file_name_;
+}
+
+void EditorWidget::setFileName(QString fileName) {
+    file_name_ = fileName;
+}
+
 void EditorWidget::lineNumberAreaPaintEvent(QPaintEvent *event) {
     QPainter painter(line_number_area_);
     painter.fillRect(event->rect(), Qt::lightGray);
