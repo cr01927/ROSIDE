@@ -18,6 +18,8 @@ public:
 
 private slots:
     void closeTab(int index);
+    void saveCurrentTab();
+    void saveCurrentTabAs();
 private:
     QDockWidget *ROS_package_explorer_dock;
     QTabWidget *main_tab_widget_;

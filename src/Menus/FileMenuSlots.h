@@ -13,5 +13,7 @@ namespace FileMenuSlots {
 
     void NewFile(MainWindow* mainWindow);
     void OpenFile(MainWindow* mainWindow);
+    void SaveFile(MainWindow* mainWindow);
+    void SaveFileAs(MainWindow* mainWindow);
 }
 #endif //ROSIDE_FILEMENUSLOTS_H

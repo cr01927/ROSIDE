@@ -48,6 +48,7 @@ void DevelopWidget::openFileInTab(QString fileName) {
     EditorWidget* fileEditor = new EditorWidget(main_tab_widget_);
     main_tab_widget_->addTab(fileEditor, fileName);
     fileEditor->setPlainText(fileText);
+    fileEditor->setFileName(fileName);
 
     main_tab_widget_->setCurrentWidget(fileEditor);
 }
@@ -56,4 +57,25 @@ void DevelopWidget::closeTab(int index) {
     // Assumes main_tab_widget_ contains only EditorWidgets
     main_tab_widget_->removeTab(index);
 
+void DevelopWidget::saveCurrentTab() {
+    // This line assumes all tabs are EditorWidgets. May not be the case in the future
+    EditorWidget* editorWidget = dynamic_cast<EditorWidget*>(main_tab_widget_->currentWidget());
+    QString fileName = editorWidget->getFileName();
+
+    if (fileName.isEmpty()) {
+        saveCurrentTabAs();
+        return;
+    }
+    QTextDocumentWriter writer(fileName);
+    writer.setFormat("plaintext");
+    writer.write(editorWidget->document());
+
+}
+  
+void DevelopWidget::saveCurrentTabAs() {
+    QString fileName = QFileDialog::getSaveFileName(this);
+    // This line assumes all tabs are EditorWidgets. May not be the case in the future
+    EditorWidget* editorWidget = dynamic_cast<EditorWidget*>(main_tab_widget_->currentWidget());
+    editorWidget->setFileName(fileName);
+    saveCurrentTab();
 }

@@ -64,6 +64,8 @@ void MainWindow::InitFileMenu() {
     // Create actions
     file_menu_->addAction(tr("&New..."), this, SLOT(SlotNewFile()));
     file_menu_->addAction(tr("&Open..."), this, SLOT(SlotOpenFile()));
+    file_menu_->addAction(tr("&Save..."), this, SLOT(SlotSaveFile()));
+    file_menu_->addAction(tr("Save &As..."), this, SLOT(SlotSaveFileAs()));
 
 }
 
@@ -73,4 +75,12 @@ void MainWindow::SlotNewFile() {
 
 void MainWindow::SlotOpenFile() {
     FileMenuSlots::OpenFile(this);
+}
+
+void MainWindow::SlotSaveFile() {
+    FileMenuSlots::SaveFile(this);
+}
+
+void MainWindow::SlotSaveFileAs() {
+    FileMenuSlots::SaveFileAs(this);
 }
