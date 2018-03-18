@@ -19,4 +19,4 @@ include_directories(
 add_library(Modes ${MODES_SRC_FILES})
 
 qt5_use_modules(Modes Widgets)
-target_link_libraries(Modes Qt5::Core Qt5::Quick Editor)
+target_link_libraries(Modes Qt5::Core Qt5::Quick Editor ROSPackageExplorer)

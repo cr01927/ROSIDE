@@ -20,4 +20,4 @@ include_directories(
 add_library(Editor ${EDITOR_SRC_FILES})
 
 qt5_use_modules(Editor Widgets)
-target_link_libraries(Editor Qt5::Core Qt5::Quick)
+target_link_libraries(Editor Qt5::Core Qt5::Quick )
