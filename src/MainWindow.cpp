@@ -29,8 +29,7 @@ DevelopWidget *MainWindow::getDevelopWidget() const {
 
 MainWindow::MainWindow()
 : QMainWindow(0) {
-    setFixedSize(640,480);
-
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
     InitMenuBar();
     show();
 
