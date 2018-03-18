@@ -20,10 +20,12 @@ DevelopWidget::DevelopWidget(QWidget *parent)
     main_tab_widget_->addTab(new EditorWidget(main_tab_widget_), "Test");
     main_tab_widget_->setMovable(true);
     main_tab_widget_->setTabsClosable(true);
+    main_tab_widget_->connect(main_tab_widget_, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 
     ROS_package_explorer_dock = new QDockWidget(tr("ROS Package Explorer"), this);
     ROS_package_explorer_dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     ROS_package_explorer_dock->setWidget(new ROSPackageExplorer(this));
+    addDockWidget(Qt::LeftDockWidgetArea, ROS_package_explorer_dock);
 
 }
 
@@ -48,4 +50,10 @@ void DevelopWidget::openFileInTab(QString fileName) {
     fileEditor->setPlainText(fileText);
 
     main_tab_widget_->setCurrentWidget(fileEditor);
+}
+
+void DevelopWidget::closeTab(int index) {
+    // Assumes main_tab_widget_ contains only EditorWidgets
+    main_tab_widget_->removeTab(index);
+
 }
