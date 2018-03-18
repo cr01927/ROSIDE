@@ -53,13 +53,10 @@ void DevelopWidget::saveCurrentTab() {
 
     if (fileName.isEmpty())
         saveCurrentTabAs();
-    QFile file(fileName);
-    if (!file.open(QFile::WriteOnly))
-        return;
-    QTextStream textStream(&file);
-    textStream << editorWidget->toPlainText();
+    QTextDocumentWriter writer(fileName);
+    writer.setFormat("plaintext");
+    writer.write(editorWidget->document());
 
-    file.close();
 }
 void DevelopWidget::saveCurrentTabAs() {
     QString fileName = QFileDialog::getSaveFileName(this);
