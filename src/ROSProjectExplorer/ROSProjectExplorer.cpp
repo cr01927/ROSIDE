@@ -2,9 +2,9 @@
 // Created by cjreid on 3/17/18.
 //
 
-#include "ROSPackageExplorer.h"
+#include "ROSProjectExplorer.h"
 
-ROSPackageExplorer::ROSPackageExplorer(QWidget *parent)
+ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     : QMainWindow(parent) {
 
     setCentralWidget(new QTreeView(this));

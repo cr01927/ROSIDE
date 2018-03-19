@@ -7,7 +7,7 @@
 #include <QtWidgets>
 
 #include <Editor/EditorWidget.h>
-#include <ROSPackageExplorer/ROSPackageExplorer.h>
+#include <ROSProjectExplorer/ROSProjectExplorer.h>
 
 DevelopWidget::DevelopWidget(QWidget *parent)
     : QMainWindow(parent) {
@@ -24,7 +24,7 @@ DevelopWidget::DevelopWidget(QWidget *parent)
 
     ROS_package_explorer_dock = new QDockWidget(tr("ROS Package Explorer"), this);
     ROS_package_explorer_dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    ROS_package_explorer_dock->setWidget(new ROSPackageExplorer(this));
+    ROS_package_explorer_dock->setWidget(new ROSProjectExplorer(this));
     addDockWidget(Qt::LeftDockWidgetArea, ROS_package_explorer_dock);
 
 }
