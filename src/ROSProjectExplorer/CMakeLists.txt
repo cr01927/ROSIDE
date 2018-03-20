@@ -18,5 +18,5 @@ include_directories(
 
 add_library(ROSProjectExplorer ${ROSPROJECTEXPLORER_SRC_FILES})
 
-qt5_use_modules(ROSProjectExplorer Widgets)
+qt5_use_modules(ROSProjectExplorer Widgets )
 target_link_libraries(ROSProjectExplorer Qt5::Core Qt5::Quick)

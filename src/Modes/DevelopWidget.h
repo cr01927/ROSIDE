@@ -22,6 +22,11 @@ public:
 
     EditorWidget* getActiveTab();
 
+    // temporary
+    QDockWidget* getPackageExplorer() {
+        return ROS_package_explorer_dock;
+    }
+
 private slots:
     void closeTab(int index);
 

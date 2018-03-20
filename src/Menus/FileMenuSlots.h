@@ -17,6 +17,7 @@ public:
 public slots:
     void NewFile();
     void OpenFile();
+    void OpenProject();
     void SaveFile();
     void SaveFileAs();
 

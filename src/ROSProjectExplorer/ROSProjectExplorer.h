@@ -11,7 +11,22 @@
 class ROSProjectExplorer : public QMainWindow {
 public:
     ROSProjectExplorer(QWidget *parent = nullptr);
+
+    enum TYPE {
+        UNSET, // Used when no project is open yet
+        PACKAGE,
+        METAPACKAGE,
+        WORKSPACE
+    };
+
+    QDir getDir() const;
+    void setDir(QDir &dir);
+    TYPE getType() const;
+
+    void scanProject(QDir& dir);
 private:
+    QDir project_dir_;
+    TYPE project_type_;
 
 };
 
