@@ -23,25 +23,6 @@ namespace PackageXml2 {
 
     class Author;
 
-    class BuildDepend;
-
-    class BuildExportDepend;
-
-    class BuildToolDepend;
-
-    class BuildToolExportDepend;
-
-    class ExecDepend;
-
-    class Depend;
-
-    class DocDepend;
-
-    class TestDepend;
-
-    class Conflict;
-
-    class Replace;
 }
 
 class PackageXml2Data {
@@ -62,8 +43,14 @@ private:
 
 class PackageXml2::Version {
 public:
+    enum VERSION_CAT {
+        MAJOR = 0,
+        MINOR,
+        PATCH
+    };
     bool setVersion(int major, int minor, int patch);
     bool setVersion(QString version);
+    bool setVersion(QList<int> version);
 
     QString getVersion() const;
     int getMajor() const;
@@ -71,7 +58,7 @@ public:
     int getPatch() const;
 
 private:
-    int major_, minor_, patch_;
+    QList<int> version_;
 };
 
 class PackageXml2::Description {
@@ -120,10 +107,11 @@ private:
     QString author_, email_;
 };
 
-/* Class for internal use only, inherited by all of the package relationship tags (depend, conflict, replace, etc) */
 namespace PackageXml2 {
+
+    /* This is a "private" namespace... the PackageRelationship_ class shouldn't be accessible outside this cpp file */
     namespace {
-        class _PackageRelationship {
+        class PackageRelationship_ {
         public:
             enum VERSION_REQ {
                 LESS_THAN = 0,
@@ -132,50 +120,48 @@ namespace PackageXml2 {
                 GREATER_THAN_EQUAL,
                 GREATER_THAN
             };
-            void setPackageName(QString packageName, PackageXml2::Version version, VERSION_REQ version_requirement);
-            QString getPackageName() const;
-            void setVersionRequirement(PackageXml2::Version &version, VERSION_REQ version_requirement);
+            void setPackageName(const QString &packageName) {
+                name_ = packageName;
+            }
+            QString getPackageName() const {
+                return name_;
+            }
+            void setVersionRequirement(PackageXml2::Version &version, VERSION_REQ version_requirement) {
+                switch (version_requirement) {
+                    case (LESS_THAN):
+                        lt_ = version;
+                        break;
+                    case (LESS_THAN_EQUAL):
+                        lte_ = version;
+                        break;
+                    case (EQUAL):
+                        eq_ = version;
+                        break;
+                    case (GREATER_THAN_EQUAL):
+                        gte_ = version;
+                        break;
+                    case (GREATER_THAN):
+                        gt_ = version;
+                        break;
+                }
+            }
 
         private:
-            PackageXml2::Version lt_, lte, eq, gte, gt;
+            PackageXml2::Version lt_, lte_, eq_, gte_, gt_;
+            QString name_;
         };
     }
+
+    typedef PackageXml2::PackageRelationship_ BuildDepend;
+    typedef PackageXml2::PackageRelationship_ BuildExportDepend;
+    typedef PackageXml2::PackageRelationship_ BuildToolDepend;
+    typedef PackageXml2::PackageRelationship_ BuildToolExportDepend;
+    typedef PackageXml2::PackageRelationship_ ExecDepend;
+    typedef PackageXml2::PackageRelationship_ Depend;
+    typedef PackageXml2::PackageRelationship_ DocDepend;
+    typedef PackageXml2::PackageRelationship_ TestDepend;
+    typedef PackageXml2::PackageRelationship_ Conflict;
+    typedef PackageXml2::PackageRelationship_ Replace;
 }
 
-typedef PackageXml2::_PackageRelationship PackageXml2::BuildDepend;
-
-class PackageXml2::BuildDepend : public _PackageRelationship {
-public:
-    void setBuildDepend(QString packageName, PackageXml2::Version version);
-    QString getBuildDepend() const;
-private:
-    QString package_name_;
-};
-
-class PackageXml2::BuildExportDepend : public _PackageRelationship {
-
-};
-class PackageXml2::BuildToolDepend : public _PackageRelationship {
-
-};
-class PackageXml2::BuildToolExportDepend : public _PackageRelationship {
-
-};
-class PackageXml2::ExecDepend : public _PackageRelationship {
-
-};
-class PackageXml2::Depend : public _PackageRelationship {
-
-};
-class PackageXml2::DocDepend : public _PackageRelationship {
-
-};
-class PackageXml2::TestDepend : public _PackageRelationship {
-
-};
-class PackageXml2::Conflict : public _PackageRelationship {
-
-};
-class PackageXml2::Replace : public _PackageRelationship {
-};
 #endif //ROSIDE_PACKAGEXML2DATA_H
