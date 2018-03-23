@@ -2,8 +2,8 @@
 // Created by cjreid on 3/21/18.
 //
 
-#ifndef ROSIDE_PACKAGEXML2DATA_H
-#define ROSIDE_PACKAGEXML2DATA_H
+#ifndef ROSIDE_PACKAGEXML2COMPONENTS_H
+#define ROSIDE_PACKAGEXML2COMPONENTS_H
 
 #include <QString>
 
@@ -25,9 +25,6 @@ namespace PackageXml2 {
 
 }
 
-class PackageXml2Data {
-
-};
 
 /* Stores the package name, under the <name> tag. Should obey the formatting rules laid out in REP 140 */
 class PackageXml2::Name {
@@ -163,5 +160,10 @@ namespace PackageXml2 {
     typedef PackageXml2::PackageRelationship_ Conflict;
     typedef PackageXml2::PackageRelationship_ Replace;
 }
+
+
+class PackageXml2Data {
+
+};
 
 #endif //ROSIDE_PACKAGEXML2DATA_H

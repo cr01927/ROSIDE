@@ -3,7 +3,7 @@
 //
 
 #include <QStringList>
-#include "PackageXml2Data.h"
+#include "PackageXml2Components.h"
 
 bool PackageXml2::Name::setName(QString name) {
     // TODO: Check format of name ( REP 140 ) and enforce the format (don't allow setting an improper name)
