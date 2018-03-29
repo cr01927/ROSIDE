@@ -2,3 +2,9 @@ build*/
 cmake-build-debug/
 .idea/
 cMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+
