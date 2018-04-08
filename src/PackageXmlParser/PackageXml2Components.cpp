@@ -40,7 +40,7 @@ bool PackageXml2::Version::setVersion(QString version) {
         int versionPart = splitVersion.at(idx).toInt(&conversionPassed);
         if (!conversionPassed)
             return false;
-        version_.replace(idx, versionPart);
+        version_.insert(idx, versionPart);
     }
     return true;
 

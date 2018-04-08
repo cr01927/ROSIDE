@@ -7,14 +7,14 @@
 
 #include <QFile>
 
-#include <PackageXml2Components.h>
+class PackageXml2Data;
 
 
 class PackageXmlParser {
 public:
     PackageXmlParser();
 
-    void parse(QFile&, PackageXml2Data&);
+    void parse(QFile&, PackageXml2Data*);
 
 private:
 

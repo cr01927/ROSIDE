@@ -7,6 +7,7 @@
 //#include <QtXml>
 
 #include <PackageXmlParser/PackageXmlParser.h>
+#include <PackageXmlParser/PackageXml2Components.h>
 
 ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     : QMainWindow(parent) {
@@ -69,8 +70,12 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
 
          */
         QFile file(dir.absolutePath() + "/package.xml");
-        PackageXMLParser packageXMLParser;
-        packageXMLParser.parse(file);
+        PackageXmlParser packageXmlParser;
+        PackageXml2Data packageXml2Data;
+        packageXmlParser.parse(file, &packageXml2Data);
+
+        qDebug() << "Maintainer: " + packageXml2Data.Maintainers.at(0).getMaintainer();
+        qDebug() << "Email: " + packageXml2Data.Maintainers.at(0).getMaintainerEmail();
     }
 }
 
