@@ -163,6 +163,24 @@ namespace PackageXml2 {
 
 
 class PackageXml2Data {
+public:
+    PackageXml2::Name Name;
+    PackageXml2::Version Version;
+    PackageXml2::Description Description;
+    QList<PackageXml2::Maintainer> Maintainers;
+    QList<PackageXml2::License> Licenses;
+    QList<PackageXml2::Url> Urls;
+    QList<PackageXml2::Author> Authors;
+    QList<PackageXml2::BuildDepend> BuildDepends;
+    QList<PackageXml2::BuildExportDepend> BuildExportDepends;
+    QList<PackageXml2::BuildToolDepend> BuildToolDepends;
+    QList<PackageXml2::BuildToolExportDepend> BuildToolExportDepends;
+    QList<PackageXml2::ExecDepend> ExecDepends;
+    QList<PackageXml2::Depend> Depends;
+    QList<PackageXml2::DocDepend> DocDepends;
+    QList<PackageXml2::TestDepend> TestDepends;
+    QList<PackageXml2::Conflict> Conflicts;
+    // TODO: QList<PackageXml2::Export> Exports;
 
 };
 

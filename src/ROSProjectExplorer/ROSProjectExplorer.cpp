@@ -6,7 +6,7 @@
 
 //#include <QtXml>
 
-#include <PackageXMLParser/PackageXMLParser.h>
+#include <PackageXmlParser/PackageXmlParser.h>
 
 ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     : QMainWindow(parent) {

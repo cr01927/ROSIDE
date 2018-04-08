@@ -1,7 +1,7 @@
 add_subdirectory(Editor)
 add_subdirectory(Menus)
 add_subdirectory(Modes)
-add_subdirectory(PackageXMLParser)
+add_subdirectory(PackageXmlParser)
 add_subdirectory(ROSProjectExplorer)
 
 set(CMAKE_AUTOMOC ON)
@@ -22,4 +22,4 @@ include_directories(
 
 add_executable(ROSIDE ${ROSIDE_SRC_FILES})
 qt5_use_modules(${PROJECT_NAME} Widgets)
-target_link_libraries(ROSIDE Qt5::Core Qt5::Quick Editor Menus Modes ROSProjectExplorer PackageXMLParser)
+target_link_libraries(ROSIDE Qt5::Core Qt5::Quick Editor Menus Modes ROSProjectExplorer PackageXmlParser)

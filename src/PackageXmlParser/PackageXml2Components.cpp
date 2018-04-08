@@ -35,12 +35,12 @@ bool PackageXml2::Version::setVersion(QString version) {
     // REP 140 requires MAJOR.MINOR.PATCH, so the below statement filters for an incorrect number of version specifiers
     if ( splitVersion.count() != 3)
         return false;
-    foreach (QString versionSpec, splitVersion) {
+    for (int idx = MAJOR; idx <= PATCH; idx++) {
         bool conversionPassed;
-        versionSpec.toInt(&conversionPassed);
+        int versionPart = splitVersion.at(idx).toInt(&conversionPassed);
         if (!conversionPassed)
             return false;
-
+        version_.replace(idx, versionPart);
     }
     return true;
 

@@ -3,10 +3,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set( PACKAGEXMLPARSER_SRC_FILES
-        PackageXMLParser.h
-        PackageXMLParser.cpp
         PackageXml2Components.h
-        PackageXml2Components.cpp )
+        PackageXml2Components.cpp
+        PackageXmlParser.h
+        PackageXmlParser.cpp
+ )
 
 find_package(Qt5 COMPONENTS Core Xml REQUIRED)
 
