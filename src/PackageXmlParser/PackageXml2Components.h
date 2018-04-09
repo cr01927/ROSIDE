@@ -6,6 +6,7 @@
 #define ROSIDE_PACKAGEXML2COMPONENTS_H
 
 #include <QString>
+#include <QMap>
 
 namespace PackageXml2 {
 
@@ -117,6 +118,17 @@ namespace PackageXml2 {
                 GREATER_THAN_EQUAL,
                 GREATER_THAN
             };
+
+            static QMap<QString, VERSION_REQ> createVersionmap()
+            {
+                QMap<QString, VERSION_REQ> versionMap;
+                versionMap.insert("version_lt", LESS_THAN);
+                versionMap.insert("version_lte", LESS_THAN_EQUAL);
+
+            };
+
+            static const QMap<QString, VERSION_REQ> VERSION_MAP;
+
             void setPackageName(const QString &packageName) {
                 name_ = packageName;
             }
@@ -147,6 +159,8 @@ namespace PackageXml2 {
             PackageXml2::Version lt_, lte_, eq_, gte_, gt_;
             QString name_;
         };
+
+        const QMap<QString, PackageRelationship_::VERSION_REQ> PackageRelationship_::VERSION_MAP = PackageRelationship_::createVersionmap();
     }
 
     typedef PackageXml2::PackageRelationship_ BuildDepend;

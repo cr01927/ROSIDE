@@ -78,6 +78,19 @@ void PackageXmlParser::parse(QFile& packageXml, PackageXml2Data *packageXml2Data
             // They can also have an attribute restricting version usage
             // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
 
+            // Iterate over the QMap of QStrings to VERSION_REQ
+            QMap<QString, PackageXml2::BuildDepend::VERSION_REQ>::const_iterator iter;
+            for (iter = PackageXml2::BuildDepend::VERSION_MAP.begin(); iter != PackageXml2::BuildDepend::VERSION_MAP.end(); ++iter) {
+                if (element.hasAttribute(iter.key())) { // If the attribute is present
+                    // Create a version object
+                    PackageXml2::Version version;
+                    version.setVersion(element.attribute(iter.key()));
+                    PackageXml2::BuildDepend buildDepend;
+                    buildDepend.setVersionRequirement(version, iter.value());
+                    packageXml2Data->BuildDepends.append(buildDepend);
+                }
+            }
+
         } else if (element.nodeName() == "export") {
 
         }

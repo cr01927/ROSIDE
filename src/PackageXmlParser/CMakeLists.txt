@@ -2,6 +2,8 @@
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_CXX_STANDARD 11)
+
 set( PACKAGEXMLPARSER_SRC_FILES
         PackageXml2Components.h
         PackageXml2Components.cpp
