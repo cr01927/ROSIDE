@@ -9,7 +9,7 @@ set( PACKAGEXMLPARSER_SRC_FILES
         PackageXml2Components.cpp
         PackageXmlParser.h
         PackageXmlParser.cpp
- )
+        PackageXml2Data.h)
 
 find_package(Qt5 COMPONENTS Core Xml REQUIRED)
 

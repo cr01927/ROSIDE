@@ -18,6 +18,7 @@ find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 include_directories(
         ${QT_INCLUDES}
         .
+        PackageXmlParser
 )
 
 add_executable(ROSIDE ${ROSIDE_SRC_FILES})

@@ -24,6 +24,8 @@ namespace PackageXml2 {
 
     class Author;
 
+    class Dependency;
+
 }
 
 
@@ -105,97 +107,55 @@ private:
     QString author_, email_;
 };
 
-namespace PackageXml2 {
+class PackageXml2::Dependency {
+public:
+    enum VERSION_REQ {
+        LESS_THAN = 0,
+        LESS_THAN_EQUAL,
+        EQUAL,
+        GREATER_THAN_EQUAL,
+        GREATER_THAN
+    };
 
-    /* This is a "private" namespace... the PackageRelationship_ class shouldn't be accessible outside this cpp file */
-    namespace {
-        class PackageRelationship_ {
-        public:
-            enum VERSION_REQ {
-                LESS_THAN = 0,
-                LESS_THAN_EQUAL,
-                EQUAL,
-                GREATER_THAN_EQUAL,
-                GREATER_THAN
-            };
+    static QMap<QString, VERSION_REQ> createVersionmap()
+    {
+        QMap<QString, VERSION_REQ> versionMap;
+        versionMap.insert("version_lt", LESS_THAN);
+        versionMap.insert("version_lte", LESS_THAN_EQUAL);
 
-            static QMap<QString, VERSION_REQ> createVersionmap()
-            {
-                QMap<QString, VERSION_REQ> versionMap;
-                versionMap.insert("version_lt", LESS_THAN);
-                versionMap.insert("version_lte", LESS_THAN_EQUAL);
+    };
 
-            };
+    static const QMap<QString, VERSION_REQ> VERSION_MAP;
 
-            static const QMap<QString, VERSION_REQ> VERSION_MAP;
-
-            void setPackageName(const QString &packageName) {
-                name_ = packageName;
-            }
-            QString getPackageName() const {
-                return name_;
-            }
-            void setVersionRequirement(PackageXml2::Version &version, VERSION_REQ version_requirement) {
-                switch (version_requirement) {
-                    case (LESS_THAN):
-                        lt_ = version;
-                        break;
-                    case (LESS_THAN_EQUAL):
-                        lte_ = version;
-                        break;
-                    case (EQUAL):
-                        eq_ = version;
-                        break;
-                    case (GREATER_THAN_EQUAL):
-                        gte_ = version;
-                        break;
-                    case (GREATER_THAN):
-                        gt_ = version;
-                        break;
-                }
-            }
-
-        private:
-            PackageXml2::Version lt_, lte_, eq_, gte_, gt_;
-            QString name_;
-        };
-
-        const QMap<QString, PackageRelationship_::VERSION_REQ> PackageRelationship_::VERSION_MAP = PackageRelationship_::createVersionmap();
+    void setPackageName(const QString &packageName) {
+        name_ = packageName;
+    }
+    QString getPackageName() const {
+        return name_;
+    }
+    void setVersionRequirement(PackageXml2::Version &version, VERSION_REQ version_requirement) {
+        switch (version_requirement) {
+            case (LESS_THAN):
+                lt_ = version;
+                break;
+            case (LESS_THAN_EQUAL):
+                lte_ = version;
+                break;
+            case (EQUAL):
+                eq_ = version;
+                break;
+            case (GREATER_THAN_EQUAL):
+                gte_ = version;
+                break;
+            case (GREATER_THAN):
+                gt_ = version;
+                break;
+        }
     }
 
-    typedef PackageXml2::PackageRelationship_ BuildDepend;
-    typedef PackageXml2::PackageRelationship_ BuildExportDepend;
-    typedef PackageXml2::PackageRelationship_ BuildToolDepend;
-    typedef PackageXml2::PackageRelationship_ BuildToolExportDepend;
-    typedef PackageXml2::PackageRelationship_ ExecDepend;
-    typedef PackageXml2::PackageRelationship_ Depend;
-    typedef PackageXml2::PackageRelationship_ DocDepend;
-    typedef PackageXml2::PackageRelationship_ TestDepend;
-    typedef PackageXml2::PackageRelationship_ Conflict;
-    typedef PackageXml2::PackageRelationship_ Replace;
-}
-
-
-class PackageXml2Data {
-public:
-    PackageXml2::Name Name;
-    PackageXml2::Version Version;
-    PackageXml2::Description Description;
-    QList<PackageXml2::Maintainer> Maintainers;
-    QList<PackageXml2::License> Licenses;
-    QList<PackageXml2::Url> Urls;
-    QList<PackageXml2::Author> Authors;
-    QList<PackageXml2::BuildDepend> BuildDepends;
-    QList<PackageXml2::BuildExportDepend> BuildExportDepends;
-    QList<PackageXml2::BuildToolDepend> BuildToolDepends;
-    QList<PackageXml2::BuildToolExportDepend> BuildToolExportDepends;
-    QList<PackageXml2::ExecDepend> ExecDepends;
-    QList<PackageXml2::Depend> Depends;
-    QList<PackageXml2::DocDepend> DocDepends;
-    QList<PackageXml2::TestDepend> TestDepends;
-    QList<PackageXml2::Conflict> Conflicts;
-    // TODO: QList<PackageXml2::Export> Exports;
-
+private:
+    PackageXml2::Version lt_, lte_, eq_, gte_, gt_;
+    QString name_;
 };
 
 #endif //ROSIDE_PACKAGEXML2DATA_H

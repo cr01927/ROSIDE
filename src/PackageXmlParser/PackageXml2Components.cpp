@@ -5,6 +5,10 @@
 #include <QStringList>
 #include "PackageXml2Components.h"
 
+
+const QMap<QString, PackageXml2::Dependency::VERSION_REQ> PackageXml2::Dependency::VERSION_MAP = PackageXml2::Dependency::createVersionmap();
+
+
 bool PackageXml2::Name::setName(QString name) {
     // TODO: Check format of name ( REP 140 ) and enforce the format (don't allow setting an improper name)
     // This function will be called when creating a package

@@ -6,6 +6,7 @@
 #include <QtXml>
 
 #include <PackageXml2Components.h>
+#include <PackageXml2Data.h>
 
 PackageXmlParser::PackageXmlParser() {}
 
@@ -79,17 +80,19 @@ void PackageXmlParser::parse(QFile& packageXml, PackageXml2Data *packageXml2Data
             // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
 
             // Iterate over the QMap of QStrings to VERSION_REQ
-            QMap<QString, PackageXml2::BuildDepend::VERSION_REQ>::const_iterator iter;
-            for (iter = PackageXml2::BuildDepend::VERSION_MAP.begin(); iter != PackageXml2::BuildDepend::VERSION_MAP.end(); ++iter) {
+            qDebug() << "buildtool depend";
+            QMap<QString, PackageXml2::Dependency::VERSION_REQ>::const_iterator iter;
+            for (iter = PackageXml2::Dependency::VERSION_MAP.begin(); iter != PackageXml2::Dependency::VERSION_MAP.end(); ++iter) {
                 if (element.hasAttribute(iter.key())) { // If the attribute is present
                     // Create a version object
                     PackageXml2::Version version;
                     version.setVersion(element.attribute(iter.key()));
-                    PackageXml2::BuildDepend buildDepend;
+                    PackageXml2::Dependency buildDepend;
                     buildDepend.setVersionRequirement(version, iter.value());
                     packageXml2Data->BuildDepends.append(buildDepend);
                 }
             }
+            qDebug() << "buildtool depend2";
 
         } else if (element.nodeName() == "export") {
 

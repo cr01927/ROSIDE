@@ -13,6 +13,7 @@ include_directories(
         ${QT_INCLUDES}
         .
         ..
+        ../PackageXmlParser
 )
 
 
