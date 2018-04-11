@@ -5,6 +5,7 @@
 #ifndef ROSIDE_PACKAGEXML2COMPONENTS_H
 #define ROSIDE_PACKAGEXML2COMPONENTS_H
 
+#include <QList>
 #include <QString>
 #include <QMap>
 
@@ -25,6 +26,8 @@ namespace PackageXml2 {
     class Author;
 
     class Dependency;
+
+    typedef QList<Dependency> DependencyList;
 
 }
 
@@ -122,6 +125,8 @@ public:
         QMap<QString, VERSION_REQ> versionMap;
         versionMap.insert("version_lt", LESS_THAN);
         versionMap.insert("version_lte", LESS_THAN_EQUAL);
+
+        return versionMap;
 
     };
 

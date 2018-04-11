@@ -74,39 +74,92 @@ void PackageXmlParser::parse(QFile& packageXml, PackageXml2Data *packageXml2Data
             }
             packageXml2Data->Authors.append(author);
 
+        } else if (element.nodeName() == "build_depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->BuildDepends, &element);
+
+        } else if (element.nodeName() == "build_export_depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->BuildExportDepends, &element);
+
         } else if (element.nodeName() == "buildtool_depend") {
             // All dependencies and relationships can be expressed in multiple elements
             // They can also have an attribute restricting version usage
             // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
 
-            // Iterate over the QMap of QStrings to VERSION_REQ
-            qDebug() << "buildtool depend";
-            QMap<QString, PackageXml2::Dependency::VERSION_REQ>::const_iterator iter;
-            for (iter = PackageXml2::Dependency::VERSION_MAP.begin(); iter != PackageXml2::Dependency::VERSION_MAP.end(); ++iter) {
-                if (element.hasAttribute(iter.key())) { // If the attribute is present
-                    // Create a version object
-                    PackageXml2::Version version;
-                    version.setVersion(element.attribute(iter.key()));
-                    PackageXml2::Dependency buildDepend;
-                    buildDepend.setVersionRequirement(version, iter.value());
-                    packageXml2Data->BuildDepends.append(buildDepend);
-                }
-            }
-            qDebug() << "buildtool depend2";
+            fillDependency(&packageXml2Data->BuildToolDepends, &element);
 
-        } else if (element.nodeName() == "export") {
+        } else if (element.nodeName() == "buildtool_export_depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->BuildToolExportDepends, &element);
+
+        } else if (element.nodeName() == "exec_depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->ExecDepends, &element);
+
+        } else if (element.nodeName() == "depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->Depends, &element);
+
+        } else if (element.nodeName() == "doc_depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->DocDepends, &element);
+
+        } else if (element.nodeName() == "test_depend") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->TestDepends, &element);
+
+        } else if (element.nodeName() == "conflict") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->Conflicts, &element);
+
+        } else if (element.nodeName() == "replace") {
+            // All dependencies and relationships can be expressed in multiple elements
+            // They can also have an attribute restricting version usage
+            // "version_" with suffix "lt", "lte", "eq", "gte", "gt"
+
+            fillDependency(&packageXml2Data->Replaces, &element);
+
+        }else if (element.nodeName() == "export") {
 
         }
     }
+}
 
-    /*
-    QDomNode child = doc.documentElement().elementsByTagName("export").at(0).firstChild();
-    while (!child.isNull()) {
-        if (child.toElement().tagName() == "metapackage") {
-            project_type_ = METAPACKAGE;
-            return;
+void PackageXmlParser::fillDependency(PackageXml2::DependencyList *dependencyList, QDomElement *element) {
+    QMap<QString, PackageXml2::Dependency::VERSION_REQ>::const_iterator iter;
+    for (iter = PackageXml2::Dependency::VERSION_MAP.constBegin(); iter != PackageXml2::Dependency::VERSION_MAP.constEnd(); ++iter) {
+        if (element->hasAttribute(iter.key())) { // If the attribute is present
+            // Create a version object
+            PackageXml2::Version version;
+            version.setVersion(element->attribute(iter.key()));
+            PackageXml2::Dependency depends;
+            depends.setVersionRequirement(version, iter.value());
+            dependencyList->append(depends);
         }
-        child = child.nextSibling();
     }
-     */
 }

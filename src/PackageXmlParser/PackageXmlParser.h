@@ -6,8 +6,14 @@
 #define ROSIDE_PACKAGEXMLPARSER_H
 
 #include <QFile>
+#include <QList>
 
 class PackageXml2Data;
+namespace PackageXml2 {
+    class Dependency;
+    typedef QList<Dependency> DependencyList;
+}
+class QDomElement;
 
 
 class PackageXmlParser {
@@ -15,6 +21,7 @@ public:
     PackageXmlParser();
 
     void parse(QFile&, PackageXml2Data*);
+    void fillDependency(PackageXml2::DependencyList*, QDomElement*);
 
 private:
 

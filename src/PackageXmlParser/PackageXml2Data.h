@@ -8,6 +8,7 @@
 #include <PackageXml2Components.h>
 
 
+
 class PackageXml2Data {
     public:
 
@@ -18,15 +19,17 @@ class PackageXml2Data {
     QList<PackageXml2::License> Licenses;
     QList<PackageXml2::Url> Urls;
     QList<PackageXml2::Author> Authors;
-    QList<PackageXml2::Dependency> BuildDepends;
-    QList<PackageXml2::Dependency> BuildExportDepends;
-    QList<PackageXml2::Dependency> BuildToolDepends;
-    QList<PackageXml2::Dependency> BuildToolExportDepends;
-    QList<PackageXml2::Dependency> ExecDepends;
-    QList<PackageXml2::Dependency> Depends;
-    QList<PackageXml2::Dependency> DocDepends;
-    QList<PackageXml2::Dependency> TestDepends;
-    QList<PackageXml2::Dependency> Conflicts;
+    PackageXml2::DependencyList BuildDepends;
+    //QList<PackageXml2::Dependency> BuildDepends;
+    PackageXml2::DependencyList BuildExportDepends;
+    PackageXml2::DependencyList BuildToolDepends;
+    PackageXml2::DependencyList BuildToolExportDepends;
+    PackageXml2::DependencyList ExecDepends;
+    PackageXml2::DependencyList Depends;
+    PackageXml2::DependencyList DocDepends;
+    PackageXml2::DependencyList TestDepends;
+    PackageXml2::DependencyList Conflicts;
+    PackageXml2::DependencyList Replaces;
     // TODO: QList<PackageXml2::Export> Exports;
 };
 

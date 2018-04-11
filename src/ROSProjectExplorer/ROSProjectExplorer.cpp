@@ -4,8 +4,6 @@
 
 #include "ROSProjectExplorer.h"
 
-//#include <QtXml>
-
 #include <PackageXmlParser.h>
 #include <PackageXml2Data.h>
 
