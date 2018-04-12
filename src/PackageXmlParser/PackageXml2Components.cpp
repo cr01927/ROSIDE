@@ -5,6 +5,10 @@
 #include <QStringList>
 #include "PackageXml2Components.h"
 
+
+const QMap<QString, PackageXml2::Dependency::VERSION_REQ> PackageXml2::Dependency::VERSION_MAP = PackageXml2::Dependency::createVersionmap();
+
+
 bool PackageXml2::Name::setName(QString name) {
     // TODO: Check format of name ( REP 140 ) and enforce the format (don't allow setting an improper name)
     // This function will be called when creating a package
@@ -35,12 +39,12 @@ bool PackageXml2::Version::setVersion(QString version) {
     // REP 140 requires MAJOR.MINOR.PATCH, so the below statement filters for an incorrect number of version specifiers
     if ( splitVersion.count() != 3)
         return false;
-    foreach (QString versionSpec, splitVersion) {
+    for (int idx = MAJOR; idx <= PATCH; idx++) {
         bool conversionPassed;
-        versionSpec.toInt(&conversionPassed);
+        int versionPart = splitVersion.at(idx).toInt(&conversionPassed);
         if (!conversionPassed)
             return false;
-
+        version_.insert(idx, versionPart);
     }
     return true;
 
