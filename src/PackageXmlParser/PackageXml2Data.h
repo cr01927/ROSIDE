@@ -31,6 +31,13 @@ class PackageXml2Data {
     PackageXml2::DependencyList Conflicts;
     PackageXml2::DependencyList Replaces;
     // TODO: QList<PackageXml2::Export> Exports;
+
+    bool isMetapackage = false;
+    bool isArchitectureIndependent = false;
+    QString buildType = "catkin";
+    bool isDeprecated = false;
+    QString messageGenerator;
+
 };
 
 

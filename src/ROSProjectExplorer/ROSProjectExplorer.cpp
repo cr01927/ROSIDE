@@ -38,42 +38,13 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         project_type_ = WORKSPACE;
         qDebug() << "This is a catkin workspace";
     } else {
-        /*
         // We parse XML here to see if its a meta package or not. We could probably just check for a src directory,
         //   but this feels a little more robust
-        QDomDocument doc("ROSPackage");
-        QFile file(dir.absolutePath() + "/package.xml");
-        if (!file.open(QIODevice::ReadOnly)) {
-            qDebug() << "Couldn't open package.xml" << file.errorString();
-            return;
-        }
-        if (!doc.setContent(&file)) {
-            file.close();
-            qDebug() << "Couldn't set QDomDocument content:";
-            return;
-        }
-        file.close();
-
-        QDomNode child = doc.documentElement().elementsByTagName("export").at(0).firstChild();
-        while (!child.isNull()) {
-            if (child.toElement().tagName() == "metapackage") {
-                project_type_ = METAPACKAGE;
-                return;
-            }
-            child = child.nextSibling();
-        }
-
-        // Nothing left, must be normal package
-        project_type_ = PACKAGE;
-
-         */
         QFile file(dir.absolutePath() + "/package.xml");
         PackageXmlParser packageXmlParser;
         PackageXml2Data packageXml2Data;
         packageXmlParser.parse(file, &packageXml2Data);
 
-        qDebug() << "Maintainer: " + packageXml2Data.Maintainers.at(0).getMaintainer();
-        qDebug() << "Email: " + packageXml2Data.Maintainers.at(0).getMaintainerEmail();
     }
 }
 

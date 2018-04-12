@@ -145,7 +145,24 @@ void PackageXmlParser::parse(QFile& packageXml, PackageXml2Data *packageXml2Data
             fillDependency(&packageXml2Data->Replaces, &element);
 
         }else if (element.nodeName() == "export") {
+            for (int idxExport = 0; idxExport < element.childNodes().count(); idxExport ++) {
+                if (element.childNodes().at(idx).isComment())
+                    continue;
 
+                QDomElement elementExport = element.childNodes().at(idx).toElement();
+
+                if (element.nodeName() == "architecture_independent") {
+                    packageXml2Data->isArchitectureIndependent = true;
+                }  else if (element.nodeName() == "build_type") {
+                    packageXml2Data->buildType = element.text();
+                } else if (element.nodeName() == "deprecated") {
+                    packageXml2Data->isDeprecated = true;
+                } else if (element.nodeName() == "message_generator") {
+                    packageXml2Data->messageGenerator = element.text();
+                } else if (element.nodeName() == "metapackage") {
+                    packageXml2Data->isMetapackage = true;
+                }
+            }
         }
     }
 }
