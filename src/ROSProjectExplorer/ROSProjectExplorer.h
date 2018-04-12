@@ -27,6 +27,7 @@ public:
 private:
     QDir project_dir_;
     TYPE project_type_;
+    QTreeView *tree_view_;
 
 };
 

@@ -10,7 +10,8 @@
 ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     : QMainWindow(parent) {
 
-    setCentralWidget(new QTreeView(this));
+    tree_view_ = new QTreeView(this));
+    setCentralWidget(tree_view_);
     project_type_ = UNSET;
 }
 
