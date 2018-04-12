@@ -31,7 +31,6 @@ ROSProjectExplorer::TYPE ROSProjectExplorer::getType() const {
 void ROSProjectExplorer::scanProject(QDir &dir) {
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
     QStringList entries = dir.entryList();
-    qDebug() << "Entries: " << entries.join(",");
     qDebug() << "Scanning project";
 
     if (entries.contains(QString(".catkin_workspace"))) {
@@ -45,6 +44,13 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         PackageXml2Data packageXml2Data;
         packageXmlParser.parse(file, &packageXml2Data);
 
+        if (packageXml2Data.isMetapackage) {
+            project_type_ = METAPACKAGE;
+            qDebug() << "This is a metapackage";
+        } else {
+            project_type_ = PACKAGE;
+            qDebug() << "This is a package";
+        }
     }
 }
 

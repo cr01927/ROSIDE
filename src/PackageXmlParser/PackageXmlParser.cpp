@@ -149,17 +149,17 @@ void PackageXmlParser::parse(QFile& packageXml, PackageXml2Data *packageXml2Data
                 if (element.childNodes().at(idx).isComment())
                     continue;
 
-                QDomElement elementExport = element.childNodes().at(idx).toElement();
-
-                if (element.nodeName() == "architecture_independent") {
+                QDomElement elementExport = element.childNodes().at(idxExport).toElement();
+                qDebug() << elementExport.nodeName();
+                if (elementExport.nodeName() == "architecture_independent") {
                     packageXml2Data->isArchitectureIndependent = true;
-                }  else if (element.nodeName() == "build_type") {
+                }  else if (elementExport.nodeName() == "build_type") {
                     packageXml2Data->buildType = element.text();
-                } else if (element.nodeName() == "deprecated") {
+                } else if (elementExport.nodeName() == "deprecated") {
                     packageXml2Data->isDeprecated = true;
-                } else if (element.nodeName() == "message_generator") {
+                } else if (elementExport.nodeName() == "message_generator") {
                     packageXml2Data->messageGenerator = element.text();
-                } else if (element.nodeName() == "metapackage") {
+                } else if (elementExport.nodeName() == "metapackage") {
                     packageXml2Data->isMetapackage = true;
                 }
             }
