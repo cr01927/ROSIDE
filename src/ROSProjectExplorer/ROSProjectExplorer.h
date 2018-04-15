@@ -24,6 +24,8 @@ public:
     TYPE getType() const;
 
     void scanProject(QDir& dir);
+public slots:
+    void itemDoubleClicked(const QModelIndex &index);
 private:
     QDir project_dir_;
     TYPE project_type_;
