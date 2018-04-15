@@ -53,5 +53,11 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
             qDebug() << "This is a package";
         }
     }
+
+    QFileSystemModel *model = new QFileSystemModel;
+
+    qDebug() << dir.canonicalPath();
+    tree_view_->setModel(model);
+    tree_view_->setRootIndex(model->setRootPath(dir.canonicalPath()));
 }
 
