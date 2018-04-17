@@ -2,8 +2,9 @@
 // Created by cjreid on 3/17/18.
 //
 
-#include "ROSProjectExplorer.h"
+#include <ROSProjectExplorer.h>
 
+#include <MainWindow.h>
 #include <PackageXmlParser.h>
 #include <PackageXml2Data.h>
 
@@ -66,5 +67,8 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
 void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
     QFileSystemModel* fsModel = static_cast<QFileSystemModel*>(tree_view_->model());
     QString fileName = fsModel->fileName(index);
+    QString filePath = fsModel->filePath(index);
     qDebug() << "Double clicked file " << fileName;
+    MainWindow::get().getDevelopWidget()->openFileInTab(filePath);
+
 }
