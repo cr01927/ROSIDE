@@ -14,7 +14,7 @@ ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     setCentralWidget(tree_view_);
     project_type_ = UNSET;
 
-    connect(tree_view_, SIGNAL(doubleClicked(const QModelIndex &index)), this, SLOT(itemDoubleClicked(QModelIndex &index)));
+    connect(tree_view_, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleClicked(QModelIndex)));
 }
 
 QDir ROSProjectExplorer::getDir() const {
@@ -63,7 +63,7 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
     tree_view_->setRootIndex(model->setRootPath(dir.canonicalPath()));
 }
 
-void ROSProjectExplorer::itemDoubleClicked(const QModelIndex &index) {
+void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
     QFileSystemModel* fsModel = static_cast<QFileSystemModel*>(tree_view_->model());
     QString fileName = fsModel->fileName(index);
     qDebug() << "Double clicked file " << fileName;
