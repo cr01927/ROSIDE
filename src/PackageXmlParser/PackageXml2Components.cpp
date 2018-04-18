@@ -3,7 +3,7 @@
 //
 
 #include <QStringList>
-#include "PackageXml2Components.h"
+#include <PackageXml2Components.h>
 
 
 const QMap<QString, PackageXml2::Dependency::VERSION_REQ> PackageXml2::Dependency::VERSION_MAP = PackageXml2::Dependency::createVersionmap();

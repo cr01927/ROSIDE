@@ -9,6 +9,7 @@
 
 // Not sure if this should inherit QMainWindow or just QWidget... depends on the toolbars I think?
 class ROSProjectExplorer : public QMainWindow {
+    Q_OBJECT
 public:
     ROSProjectExplorer(QWidget *parent = nullptr);
 
@@ -24,6 +25,8 @@ public:
     TYPE getType() const;
 
     void scanProject(QDir& dir);
+public slots:
+    void itemDoubleClicked(QModelIndex);
 private:
     QDir project_dir_;
     TYPE project_type_;

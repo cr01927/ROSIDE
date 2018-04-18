@@ -12,6 +12,9 @@
 EditorWidget::EditorWidget(QWidget *parent) :
     QPlainTextEdit(parent), file_info_(nullptr) {
 
+    QFont font = document()->defaultFont();
+    font.setFamily("DejaVu Sans Mono");
+    document()->setDefaultFont(font);
     line_number_area_ = new LineNumberArea(this);
 
 
