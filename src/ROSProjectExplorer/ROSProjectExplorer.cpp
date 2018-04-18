@@ -2,8 +2,9 @@
 // Created by cjreid on 3/17/18.
 //
 
-#include "ROSProjectExplorer.h"
+#include <ROSProjectExplorer.h>
 
+#include <MainWindow.h>
 #include <PackageXmlParser.h>
 #include <PackageXml2Data.h>
 
@@ -13,6 +14,9 @@ ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     tree_view_ = new QTreeView(this);
     setCentralWidget(tree_view_);
     project_type_ = UNSET;
+
+    connect(tree_view_, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleClicked(QModelIndex)));
+
 }
 
 QDir ROSProjectExplorer::getDir() const {
@@ -32,11 +36,9 @@ ROSProjectExplorer::TYPE ROSProjectExplorer::getType() const {
 void ROSProjectExplorer::scanProject(QDir &dir) {
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
     QStringList entries = dir.entryList();
-    qDebug() << "Scanning project";
 
     if (entries.contains(QString(".catkin_workspace"))) {
         project_type_ = WORKSPACE;
-        qDebug() << "This is a catkin workspace";
     } else {
         // We parse XML here to see if its a meta package or not. We could probably just check for a src directory,
         //   but this feels a little more robust
@@ -47,11 +49,24 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
 
         if (packageXml2Data.isMetapackage) {
             project_type_ = METAPACKAGE;
-            qDebug() << "This is a metapackage";
         } else {
             project_type_ = PACKAGE;
-            qDebug() << "This is a package";
         }
     }
+
+    auto *model = new QFileSystemModel;
+    tree_view_->setModel(model);
+    tree_view_->setRootIndex(model->setRootPath(dir.canonicalPath()));
+    tree_view_->setRootIsDecorated(true);
+    for (int i = 1; i < model->columnCount(); i++) {
+        tree_view_->hideColumn(i);
+    }
+
 }
 
+void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
+    auto fsModel = dynamic_cast<QFileSystemModel*>(tree_view_->model());
+    QString filePath = fsModel->filePath(index);
+    MainWindow::get().getDevelopWidget()->openFileInTab(filePath);
+
+}
