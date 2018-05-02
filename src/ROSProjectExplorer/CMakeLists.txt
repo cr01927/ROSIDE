@@ -5,7 +5,7 @@ set(CMAKE_AUTORCC ON)
 set( ROSPROJECTEXPLORER_SRC_FILES
         ROSProjectExplorer.h
         ROSProjectExplorer.cpp
-        )
+        ROSProjectModel.cpp ROSProjectModel.h)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 

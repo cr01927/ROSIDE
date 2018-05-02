@@ -4,6 +4,8 @@
 
 #include <ROSProjectExplorer.h>
 
+#include <ROSProjectModel.h>
+
 #include <MainWindow.h>
 #include <PackageXmlParser.h>
 #include <PackageXml2Data.h>
@@ -54,13 +56,14 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         }
     }
 
-    auto *model = new QFileSystemModel;
+    auto *model = new ROSProjectModel;
     tree_view_->setModel(model);
-    tree_view_->setRootIndex(model->setRootPath(dir.canonicalPath()));
+    tree_view_->setRootIndex(model->populateModel(dir));
     tree_view_->setRootIsDecorated(true);
     for (int i = 1; i < model->columnCount(); i++) {
         tree_view_->hideColumn(i);
     }
+
 
 }
 
