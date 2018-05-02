@@ -10,11 +10,11 @@ ROSProjectModel::ROSProjectModel(QObject *parent)
     dirIcon = QApplication::style()->standardIcon(QStyle::SP_DirIcon);
     fileIcon = QApplication::style()->standardIcon(QStyle::SP_FileIcon);
 
-    rootItem = this->invisibleRootItem();
 }
 
 void ROSProjectModel::populateModel(QDir &dir) {
     if (dir.exists()) {
+        rootItem = this->invisibleRootItem();
         auto realRoot = new QStandardItem(dirIcon, "test");
         realRoot->setAccessibleDescription(dir.path());
         if (rootItem == nullptr) {

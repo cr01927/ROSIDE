@@ -6,6 +6,7 @@
 #define ROSIDE_ROSPROJECTEXPLORER_H
 
 #include <QtWidgets>
+#include <ROSProjectModel.h>
 
 // Not sure if this should inherit QMainWindow or just QWidget... depends on the toolbars I think?
 class ROSProjectExplorer : public QMainWindow {
@@ -31,6 +32,7 @@ private:
     QDir project_dir_;
     TYPE project_type_;
     QTreeView *tree_view_;
+    ROSProjectModel *model;
 
 };
 
