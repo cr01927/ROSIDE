@@ -16,7 +16,7 @@ class ROSProjectModel : public QStandardItemModel {
 public:
     ROSProjectModel(QObject *parent = nullptr);
 
-    QModelIndex populateModel(QDir& dir);
+    void populateModel(QDir& dir);
     void createAndDescend(QDir *dir, QStandardItem *parent);
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 

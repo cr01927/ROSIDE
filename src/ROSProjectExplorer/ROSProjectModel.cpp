@@ -10,17 +10,21 @@ ROSProjectModel::ROSProjectModel(QObject *parent)
     dirIcon = QApplication::style()->standardIcon(QStyle::SP_DirIcon);
     fileIcon = QApplication::style()->standardIcon(QStyle::SP_FileIcon);
 
-    rootItem = invisibleRootItem();
+    rootItem = this->invisibleRootItem();
 }
 
-QModelIndex ROSProjectModel::populateModel(QDir &dir) {
+void ROSProjectModel::populateModel(QDir &dir) {
     if (dir.exists()) {
-        auto realRoot = new QStandardItem(dirIcon, dir.dirName());
+        auto realRoot = new QStandardItem(dirIcon, "test");
         realRoot->setAccessibleDescription(dir.path());
+        if (rootItem == nullptr) {
+            qDebug() << "rootItem is null";
+            return;
+        }
+        rootItem->appendRow(realRoot);
         createAndDescend(&dir, realRoot);
     }
 
-    return rootItem->index();
 }
 
 void ROSProjectModel::createAndDescend(QDir *dir, QStandardItem *parent) {

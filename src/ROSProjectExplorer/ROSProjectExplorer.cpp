@@ -56,13 +56,16 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         }
     }
 
-    auto *model = new ROSProjectModel;
+    auto *model = new ROSProjectModel(tree_view_);
     tree_view_->setModel(model);
+    model->populateModel(dir);
+    /*
     tree_view_->setRootIndex(model->populateModel(dir));
     tree_view_->setRootIsDecorated(true);
     for (int i = 1; i < model->columnCount(); i++) {
         tree_view_->hideColumn(i);
     }
+     */
 
 
 }
