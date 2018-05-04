@@ -59,20 +59,15 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
     model = new ROSProjectModel(tree_view_);
     tree_view_->setModel(model);
     model->populateModel(dir);
-    /*
-    tree_view_->setRootIndex(model->populateModel(dir));
     tree_view_->setRootIsDecorated(true);
-    for (int i = 1; i < model->columnCount(); i++) {
-        tree_view_->hideColumn(i);
-    }
-     */
+    tree_view_->header()->hide();
 
 
 }
 
 void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
-    auto fsModel = dynamic_cast<QFileSystemModel*>(tree_view_->model());
-    QString filePath = fsModel->filePath(index);
+    auto fsModel = dynamic_cast<ROSProjectModel*>(tree_view_->model());
+    QString filePath = fsModel->filename(index);
     MainWindow::get().getDevelopWidget()->openFileInTab(filePath);
 
 }

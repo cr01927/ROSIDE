@@ -13,7 +13,8 @@ include_directories(
         ${QT_INCLUDES}
         .
         ..
-)
+		../ROSProjectExplorer
+		)
 
 
 add_library(Menus ${MENUS_SRC_FILES})

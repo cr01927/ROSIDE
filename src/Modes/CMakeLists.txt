@@ -13,7 +13,8 @@ include_directories(
         ${QT_INCLUDES}
         .
         ..
-)
+		../ROSProjectExplorer
+		)	
 
 
 add_library(Modes ${MODES_SRC_FILES})

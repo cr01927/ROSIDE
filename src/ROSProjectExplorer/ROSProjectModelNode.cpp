@@ -3,3 +3,20 @@
 //
 
 #include "ROSProjectModelNode.h"
+
+ROSProjectModelNode::ROSProjectModelNode(QString fileName) {
+    filename_ = fileName;
+    setText(fileName);
+}
+
+int ROSProjectModelNode::type() const {
+    return QStandardItem::UserType;
+}
+
+QStandardItem *ROSProjectModelNode::clone() const {
+    return new ROSProjectModelNode(filename_);
+}
+
+QString ROSProjectModelNode::filename() const {
+    return filename_;
+}

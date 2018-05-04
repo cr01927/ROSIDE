@@ -6,7 +6,7 @@ set( ROSPROJECTEXPLORER_SRC_FILES
         ROSProjectExplorer.h
         ROSProjectExplorer.cpp
         ROSProjectModel.h
-        ROSProjectModel.cpp )
+        ROSProjectModel.cpp ROSProjectModelNode.cpp ROSProjectModelNode.h)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 

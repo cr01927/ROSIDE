@@ -5,9 +5,18 @@
 #ifndef ROSIDE_ROSPROJECTMODELNODE_H
 #define ROSIDE_ROSPROJECTMODELNODE_H
 
+#include <QStandardItem>
 
-class ROSProjectModelNode {
+class ROSProjectModelNode : public QStandardItem {
+public:
+    explicit ROSProjectModelNode(QString fileName);
+    int type() const override;
+    QStandardItem *clone() const override;
 
+    QString filename() const;
+
+private:
+    QString filename_;
 };
 
 
