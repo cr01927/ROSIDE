@@ -12,7 +12,7 @@ class MainWindow;
 class FileMenuSlots : public QObject{
     Q_OBJECT
 public:
-    FileMenuSlots(MainWindow*);
+    FileMenuSlots(QObject* parent, MainWindow*);
 
 public slots:
     void NewFile();

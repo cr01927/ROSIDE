@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow {
 
 Q_OBJECT
 public:
+    ~MainWindow();
     static MainWindow& get();
 
     MainWindow(MainWindow const&) = delete;
@@ -43,7 +44,6 @@ private:
     EditMenuSlots* edit_menu_slots_;
     MainWindow *main_window_;
     QMap<MODE, int> mode_tab_index_list_;
-    QMenuBar menu_bar_;
     QMenu *file_menu_, *edit_menu_;
     QTabWidget *main_tabbed_window_;
 

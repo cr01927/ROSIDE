@@ -6,9 +6,13 @@
 
 #include <MainWindow.h>
 
-EditMenuSlots::EditMenuSlots(MainWindow *mainWindow)
-    : main_window_(mainWindow) {
+EditMenuSlots::EditMenuSlots(QObject* parent, MainWindow *mainWindow)
+    : main_window_(mainWindow), QObject(parent) {
 
+}
+
+EditMenuSlots::~EditMenuSlots() {
+    qDebug() << "Destroying EditMenuSlots";
 }
 
 void EditMenuSlots::Undo() {

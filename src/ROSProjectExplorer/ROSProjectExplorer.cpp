@@ -56,7 +56,7 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         }
     }
 
-    model = new ROSProjectModel(tree_view_);
+    model = new ROSProjectModel(this);
     tree_view_->setModel(model);
     model->populateModel(dir);
     tree_view_->setRootIsDecorated(true);

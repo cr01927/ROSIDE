@@ -9,8 +9,9 @@
 #include <MainWindow.h>
 #include <ROSProjectExplorer/ROSProjectExplorer.h>
 
-FileMenuSlots::FileMenuSlots(MainWindow* mainWindow) {
-    main_window_ = mainWindow;
+FileMenuSlots::FileMenuSlots(QObject* parent, MainWindow* mainWindow)
+    : main_window_(mainWindow), QObject(parent) {
+
 }
 
 void FileMenuSlots::NewFile() {

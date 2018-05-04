@@ -12,7 +12,8 @@ class MainWindow;
 class EditMenuSlots : public QObject {
     Q_OBJECT
 public:
-    EditMenuSlots(MainWindow* mainWindow);
+    EditMenuSlots(QObject* parent, MainWindow* mainWindow);
+    ~EditMenuSlots();
 
 public slots:
     void Undo();
