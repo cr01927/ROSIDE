@@ -7,5 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #set(Qt5_DIR "/opt/qt58/lib/cmake/Qt5")
 #set(QT_QMAKE_EXECUTABLE "/opt/qt58/bin/qmake")
 
+FILE(COPY resources DESTINATION "${CMAKE_BINARY_DIR}")
+
 add_subdirectory(src)
 

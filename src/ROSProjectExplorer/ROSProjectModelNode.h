@@ -9,14 +9,34 @@
 
 class ROSProjectModelNode : public QStandardItem {
 public:
+    enum NODETYPE {
+        PACKAGE = 0,
+        PACKAGEXML,
+        CMAKELISTSTXT,
+        DIRSCRIPTS,
+        DIRSRC,
+        DIRINCLUDE,
+        DIRLAUNCH,
+        DIRMSG,
+        DIRSRV,
+        LAUNCH,
+        MSG,
+        SRV,
+        PY,
+        H,
+        CPP,
+    };
     explicit ROSProjectModelNode(QString fileName);
     int type() const override;
     QStandardItem *clone() const override;
 
     QString filename() const;
+    NODETYPE getNodeType() const;
+    void setNodeType(NODETYPE);
 
 private:
     QString filename_;
+    NODETYPE node_type_;
 };
 
 

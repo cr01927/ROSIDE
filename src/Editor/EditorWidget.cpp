@@ -27,10 +27,6 @@ EditorWidget::EditorWidget(QWidget *parent) :
 
 }
 
-EditorWidget::~EditorWidget() {
-
-}
-
 QString EditorWidget::getFileName() const {
     if (file_info_ == nullptr)
         return QString::null;

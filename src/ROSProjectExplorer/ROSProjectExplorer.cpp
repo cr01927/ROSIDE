@@ -68,6 +68,6 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
 void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
     auto fsModel = dynamic_cast<ROSProjectModel*>(tree_view_->model());
     QString filePath = fsModel->filename(index);
-    MainWindow::get().getDevelopWidget()->openFileInTab(filePath);
+    MainWindow::get()->getDevelopWidget()->openFileInTab(filePath);
 
 }

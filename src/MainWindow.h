@@ -20,8 +20,8 @@ class MainWindow : public QMainWindow {
 
 Q_OBJECT
 public:
-    ~MainWindow();
-    static MainWindow& get();
+    //~MainWindow();
+    static MainWindow* get();
 
     MainWindow(MainWindow const&) = delete;
     void operator=(MainWindow const&) = delete;
@@ -31,9 +31,11 @@ public:
 
     DevelopWidget* getDevelopWidget() const;
 
-
+protected:
+    static MainWindow *main_window_;
 private:
     MainWindow();
+
 
     void InitMenuBar();
     void InitFileMenu();
@@ -42,12 +44,14 @@ private:
 
     FileMenuSlots* file_menu_slots_;
     EditMenuSlots* edit_menu_slots_;
-    MainWindow *main_window_;
+
     QMap<MODE, int> mode_tab_index_list_;
     QMenu *file_menu_, *edit_menu_;
     QTabWidget *main_tabbed_window_;
 
 
 };
+
+
 
 #endif //ROSIDE_MAINWINDOW_H

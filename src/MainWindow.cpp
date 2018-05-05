@@ -8,13 +8,17 @@
 #include <Editor/EditorWidget.h>
 #include <Modes/DevelopWidget.h>
 
+MainWindow* MainWindow::main_window_ = nullptr;
+
+/*
 MainWindow::~MainWindow() {
 
 }
-
-MainWindow& MainWindow::get() {
-    static MainWindow instance;
-    return instance;
+*/
+MainWindow* MainWindow::get() {
+    if (main_window_ == nullptr )
+        main_window_ = new MainWindow();
+    return main_window_;
 }
 
 MODE MainWindow::getCurrentMode() {
@@ -35,8 +39,6 @@ MainWindow::MainWindow()
 : QMainWindow(0) {
     resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
 
-    file_menu_slots_ = new FileMenuSlots(file_menu_, this);
-    edit_menu_slots_ = new EditMenuSlots(edit_menu_, this);
     InitMenuBar();
     show();
 
@@ -51,6 +53,7 @@ MainWindow::MainWindow()
 
 }
 
+
 void MainWindow::InitMenuBar() {
 
     InitFileMenu();
@@ -63,7 +66,7 @@ void MainWindow::InitMenuBar() {
 void MainWindow::InitFileMenu() {
     // Add file dropdown to main menu bar
     file_menu_ = menuBar()->addMenu(tr("&File"));
-
+    file_menu_slots_ = new FileMenuSlots(file_menu_, this);
     // Create actions
     file_menu_->addAction(tr("&New..."), file_menu_slots_, SLOT(NewFile()), Qt::UniqueConnection);
     file_menu_->addAction(tr("&Open..."), file_menu_slots_, SLOT(OpenFile()), Qt::UniqueConnection);
@@ -76,6 +79,7 @@ void MainWindow::InitFileMenu() {
 void MainWindow::InitEditMenu() {
     // Add edit dropdown to main menu bar
     edit_menu_ = menuBar()->addMenu(tr("&Edit"));
+    edit_menu_slots_ = new EditMenuSlots(edit_menu_, this);
 
     // Create actions
     edit_menu_->addAction(tr("&Undo"), edit_menu_slots_, SLOT(Undo()), Qt::UniqueConnection);

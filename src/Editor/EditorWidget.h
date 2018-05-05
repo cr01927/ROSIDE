@@ -13,7 +13,6 @@ class EditorWidget : public QPlainTextEdit {
     Q_OBJECT
 public:
     EditorWidget(QWidget *parent = 0);
-    ~EditorWidget();
 
     QString getFileName() const;
     QString getFullFileName() const;

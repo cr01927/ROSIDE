@@ -40,12 +40,59 @@ void ROSProjectModel::createAndDescend(QDir *dir, QStandardItem *parent) {
             child->setEditable(false);
             child->setIcon(fileIcon);
             parent->appendRow(child);
+
+            // Set node type
+            // TODO: set custom icons
+            if (folderName.fileName() == "package.xml") {
+                child->setNodeType(ROSProjectModelNode::PACKAGEXML);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_DriveFDIcon));
+            } else if (folderName.fileName() == "CMakeLists.txt") {
+                child->setNodeType(ROSProjectModelNode::CMAKELISTSTXT);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogResetButton));
+            } else if (folderName.fileName().endsWith(".launch")) {
+                child->setNodeType(ROSProjectModelNode::LAUNCH);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPause));
+            } else if (folderName.fileName().endsWith(".msg")) {
+                child->setNodeType(ROSProjectModelNode::MSG);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPlay));
+            } else if (folderName.fileName().endsWith(".srv")) {
+                child->setNodeType(ROSProjectModelNode::SRV);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaSeekBackward));
+            } else if (folderName.fileName().endsWith(".py")) {
+                child->setNodeType(ROSProjectModelNode::PY);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaSeekForward));
+            } else if (folderName.fileName().endsWith(".h")) {
+                child->setNodeType(ROSProjectModelNode::H);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowBack));
+            } else if (folderName.fileName().endsWith(".cpp")) {
+                child->setNodeType(ROSProjectModelNode::CPP);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowDown));
+            }
         } else {
             auto child = new ROSProjectModelNode(folderName.fileName());
             child->setEditable(false);
             child->setIcon(dirIcon);
             parent->appendRow(child);
             auto childDir = QDir(folderName.filePath());
+
+            if (childDir.entryList(QDir::Files).contains("package.xml")) {
+                child->setNodeType(ROSProjectModelNode::PACKAGE);
+                child->setIcon(QIcon("../resources/icons/ROSPackage.svg"));
+            } else if (folderName.fileName() == "scripts" ) {
+                child->setNodeType(ROSProjectModelNode::DIRSCRIPTS);
+            } else if (folderName.fileName() == "src") {
+                child->setNodeType(ROSProjectModelNode::DIRSRC);
+            } else if (folderName.fileName() == "include") {
+                child->setNodeType(ROSProjectModelNode::DIRINCLUDE);
+            } else if (folderName.fileName() == "launch") {
+                child->setNodeType(ROSProjectModelNode::DIRLAUNCH);
+                child->setIcon(QApplication::style()->standardIcon(QStyle::SP_DesktopIcon));
+            } else if (folderName.fileName()== "msg") {
+                child->setNodeType(ROSProjectModelNode::DIRMSG);
+            } else if (folderName.fileName() == "srv") {
+                child->setNodeType(ROSProjectModelNode::DIRSRV);
+            }
+
             createAndDescend(&childDir, child);
 
         }

@@ -20,3 +20,11 @@ QStandardItem *ROSProjectModelNode::clone() const {
 QString ROSProjectModelNode::filename() const {
     return filename_;
 }
+
+ROSProjectModelNode::NODETYPE ROSProjectModelNode::getNodeType() const {
+    return node_type_;
+}
+
+void ROSProjectModelNode::setNodeType(NODETYPE type) {
+    node_type_ = type;
+}
