@@ -11,7 +11,7 @@
 #include <PackageXml2Data.h>
 
 ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
-    : QMainWindow(parent) {
+    : QMainWindow(parent), model(nullptr) {
 
     tree_view_ = new QTreeView(this);
     setCentralWidget(tree_view_);
@@ -50,7 +50,7 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
 
     if (entries.contains(QString(".catkin_workspace"))) {
         project_type_ = WORKSPACE;
-    } else {
+    } else if (entries.contains(QString("package.xml"))) {
         // We parse XML here to see if its a meta package or not. We could probably just check for a src directory,
         //   but this feels a little more robust
         QFile file(dir.absolutePath() + "/package.xml");
@@ -63,8 +63,18 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         } else {
             project_type_ = PACKAGE;
         }
+    } else {
+        // TODO: Raise error for no ROS project structure found
+        QMessageBox::warning(
+                this,
+                tr("Not a ROS Project"),
+                tr("No ROS project found at this directory. No project will be opened.") );
+        return;
     }
 
+    if (model != nullptr) {
+        model->clear();
+    }
     model = new ROSProjectModel(this);
     tree_view_->setModel(model);
     model->populateModel(dir);
