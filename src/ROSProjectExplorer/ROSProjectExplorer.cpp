@@ -17,7 +17,16 @@ ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     setCentralWidget(tree_view_);
     project_type_ = UNSET;
 
+    package_context_menu_ = new QMenu(tree_view_);
+    msg_context_menu_ = new QMenu(tree_view_);
+
+    package_context_menu_->addAction(tr("Edit Dependencies"));
+    msg_context_menu_->addAction(tr("New MSG"));
+    tree_view_->setContextMenuPolicy(Qt::CustomContextMenu);
+
+
     connect(tree_view_, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleClicked(QModelIndex)));
+    connect(tree_view_, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
 
 }
 
@@ -70,4 +79,14 @@ void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
     QString filePath = fsModel->filename(index);
     MainWindow::get()->getDevelopWidget()->openFileInTab(filePath);
 
+}
+
+void ROSProjectExplorer::customContextMenuRequested(QPoint pos) {
+    QModelIndex idx = tree_view_->indexAt(pos);
+    auto rpmodel = dynamic_cast<ROSProjectModel*>(tree_view_->model());
+    if (rpmodel->itemFromIndex(idx)->getNodeType() == ROSProjectModelNode::PACKAGE) {
+        package_context_menu_->exec(tree_view_->mapToGlobal(pos));
+    } else if (rpmodel->itemFromIndex(idx)->getNodeType() == ROSProjectModelNode::MSG) {
+        msg_context_menu_->exec(tree_view_->mapToGlobal(pos));
+    }
 }

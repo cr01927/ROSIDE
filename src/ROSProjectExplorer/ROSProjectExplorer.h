@@ -28,8 +28,10 @@ public:
     void scanProject(QDir& dir);
 public slots:
     void itemDoubleClicked(QModelIndex);
+    void customContextMenuRequested(QPoint pos);
 private:
     QDir project_dir_;
+    QMenu *package_context_menu_, *msg_context_menu_;
     TYPE project_type_;
     QTreeView *tree_view_;
     ROSProjectModel *model;
