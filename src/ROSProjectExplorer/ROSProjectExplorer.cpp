@@ -63,8 +63,9 @@ void ROSProjectExplorer::scanProject(QDir &dir) {
         } else {
             project_type_ = PACKAGE;
         }
-    } else {
-        // TODO: Raise error for no ROS project structure found
+    }
+    // TODO: Support for meta-projects (e.g. projects who's top level directories are ROS packages
+    else {
         QMessageBox::warning(
                 this,
                 tr("Not a ROS Project"),
