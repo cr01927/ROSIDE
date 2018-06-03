@@ -14,6 +14,8 @@ class ROSProjectExplorer : public QMainWindow {
 public:
     ROSProjectExplorer(QWidget *parent = nullptr);
 
+    void initContextMenus();
+
     enum TYPE {
         UNSET, // Used when no project is open yet
         PACKAGE,

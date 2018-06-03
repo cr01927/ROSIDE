@@ -7,6 +7,7 @@
 #include <MainWindow.h>
 #include <Editor/EditorWidget.h>
 #include <Modes/DevelopWidget.h>
+#include <ActionManager/ActionManager.h>
 
 MainWindow* MainWindow::main_window_ = nullptr;
 
@@ -68,6 +69,8 @@ void MainWindow::InitFileMenu() {
     file_menu_ = menuBar()->addMenu(tr("&File"));
     file_menu_slots_ = new FileMenuSlots(file_menu_, this);
     // Create actions
+    ActionManager::createAction(ActionManager::NEW_FILE, new QAction(tr("&New File")), file_menu_slots_, SLOT(NewFile()));
+    file_menu_->addAction(ActionManager::getAction(ActionManager::NEW_FILE));
     file_menu_->addAction(tr("&New..."), file_menu_slots_, SLOT(NewFile()), Qt::UniqueConnection);
     file_menu_->addAction(tr("&Open..."), file_menu_slots_, SLOT(OpenFile()), Qt::UniqueConnection);
     file_menu_->addAction(tr("Open &Project..."), file_menu_slots_, SLOT(OpenProject()), Qt::UniqueConnection);

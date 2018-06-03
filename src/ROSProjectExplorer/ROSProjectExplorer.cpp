@@ -17,17 +17,20 @@ ROSProjectExplorer::ROSProjectExplorer(QWidget *parent)
     setCentralWidget(tree_view_);
     project_type_ = UNSET;
 
-    package_context_menu_ = new QMenu(tree_view_);
-    msg_context_menu_ = new QMenu(tree_view_);
-
-    package_context_menu_->addAction(tr("Edit Dependencies"));
-    msg_context_menu_->addAction(tr("New MSG"));
     tree_view_->setContextMenuPolicy(Qt::CustomContextMenu);
 
 
     connect(tree_view_, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(itemDoubleClicked(QModelIndex)));
     connect(tree_view_, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
 
+}
+
+void ROSProjectExplorer::initContextMenus() {
+    package_context_menu_ = new QMenu(tree_view_);
+    msg_context_menu_ = new QMenu(tree_view_);
+
+    package_context_menu_->addAction(tr("Edit Dependencies"));
+    msg_context_menu_->addAction(tr("New MSG"));
 }
 
 QDir ROSProjectExplorer::getDir() const {
@@ -89,7 +92,6 @@ void ROSProjectExplorer::itemDoubleClicked(QModelIndex index) {
     auto fsModel = dynamic_cast<ROSProjectModel*>(tree_view_->model());
     QString filePath = fsModel->filename(index);
     MainWindow::get()->getDevelopWidget()->openFileInTab(filePath);
-
 }
 
 void ROSProjectExplorer::customContextMenuRequested(QPoint pos) {
